@@ -19,7 +19,7 @@ function testGcm() {
   }
 
   chrome.gcm.register([senderid], function(regid) {
-    console.log(regid);
+    //console.log(regid);
     //chrome.runtime.lastError
     //chrome.gcm.unregister(function() {
       //chrome.runtime.lastError
@@ -36,7 +36,7 @@ function testGcm() {
 
     try {
       chrome.gcm.send(message, function(msgid) {
-        console.log(msgid);
+        //console.log(msgid);
         //chrome.runtime.lastError
       });
     } catch (e) {

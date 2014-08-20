@@ -14,6 +14,8 @@ unacked_messages_quota = 1000
 send_queue = []
 client = None
 
+connected_users = []
+
 ################################################################################
 
 # Return a random alphanumerical id
@@ -32,8 +34,9 @@ def message_callback(session, message):
   gcm_json = gcm[0].getData()
   msg = json.loads(gcm_json)
 
-  print message
-  print 'device: '+ msg['from']
+  print "Got: " + json.dumps(msg, indent=2)
+  if msg.has_key('payload'):
+    print "  Payload: " + json.dumps(json.loads(msg['payload']), indent=2)
 
   if msg.has_key('message_type') and (msg['message_type'] == 'ack' or msg['message_type'] == 'nack'):
     unacked_messages_quota += 1
@@ -45,6 +48,11 @@ def message_callback(session, message):
     'message_type': 'ack',
     'message_id': msg['message_id']
   })
+
+  # Add this user to the list of actives
+  # TODO: how to prune users? (Perhaps after they fail to ack a message?)
+  connected_users.append(msg['from'])
+
   # Send a dummy echo response back to the app that sent the upstream message.
   send_queue.append({
     'to': msg['from'],
@@ -60,6 +68,7 @@ def send(json_dict):
   template = "<message><gcm xmlns='google:mobile:data'>{1}</gcm></message>"
   content = template.format(client.Bind.bound[0], json.dumps(json_dict))
   client.send(xmpp.protocol.Message(node = content))
+  print "Sent: " + json.dumps(json_dict, indent=2)
 
 ################################################################################
 
