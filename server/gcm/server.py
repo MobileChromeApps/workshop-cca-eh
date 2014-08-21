@@ -14,7 +14,7 @@ unacked_messages_quota = 1000
 send_queue = []
 client = None
 
-connected_users = []
+connected_users = set()
 
 ################################################################################
 
@@ -51,16 +51,30 @@ def message_callback(session, message):
 
   # Add this user to the list of actives
   # TODO: how to prune users? (Perhaps after they fail to ack a message?)
-  connected_users.append(msg['from'])
+  connected_users.add(msg['from'])
+  sendUpdatedListOfClientsToClients()
 
   # Send a dummy echo response back to the app that sent the upstream message.
-  send_queue.append({
-    'to': msg['from'],
-    'message_id': random_id(),
-    'data': {
-       'pong': msg['message_id']
-    }
-  })
+  #send_queue.append({
+  #  'to': msg['from'],
+  #  'message_id': random_id(),
+  #  'data': {
+  #     'pong': msg['message_id']
+  #  }
+  #})
+
+################################################################################
+
+def sendUpdatedListOfClientsToClients():
+  userIds = list(connected_users);
+  for user in userIds:
+    send_queue.append({
+      'to': user,
+      'message_id': random_id(),
+      'data': {
+         'users': userIds
+      }
+    })
 
 ################################################################################
 
@@ -90,9 +104,7 @@ def main():
     print 'Authentication failed!'
     sys.exit(1)
 
-  client.RegisterHandler('message', message_callback)
-
-  send_queue.append({
+  send({
     'to': REGISTRATION_ID,
     'message_id': 'reg_id',
     'data': {
@@ -100,6 +112,9 @@ def main():
       'message_id': random_id()
     }
   })
+
+  client.RegisterHandler('message', message_callback)
+
   while True:
     client.Process(1)
     flush_queued_messages()
