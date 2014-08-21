@@ -13,6 +13,13 @@ chrome.runtime.onStartup.addListener(function() {
 
 chrome.gcm.onMessage.addListener(function(msg) {
   console.log(JSON.stringify(msg.data, null, 2));
+  if (typeof msg.type !== 'string') {
+    console.error('Invalid message type');
+    return;
+  }
+  switch(msg.type) {
+    case '
+  }
 });
 
 chrome.gcm.onSendError.addListener(function() {
@@ -64,18 +71,14 @@ function connectGcm() {
 
 /******************************************************************************/
 
-function testGcm() {
-  sendMessage({'test': 'test'});
-}
-
 function identifySelfEh(displayName, callback) {
   sendMessage({'type': 'identifySelfEh', 'name': 'Michal'}, callback);
 }
 
-function onUserListChangeEh(callback) {
+function onUserListChangeEh(userlist) {
 }
 
-function onIncomingMessageEh(callback) {
+function onIncomingEh(from_userid) {
 }
 
 function sendEh(userid, callback) {

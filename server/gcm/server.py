@@ -8,7 +8,6 @@ SERVER = 'gcm.googleapis.com'
 PORT = 5235
 USERNAME = '90031296475'
 PASSWORD = 'AIzaSyBa5T4FvOUgxKLHyzTf13FLw9UU02GR3Lc'
-REGISTRATION_ID = 'APA91bHoyikUYrbEZ0qY98IS0dNuvqh6A1fpWGBBr1g1ruejYCP8YmSOcGM6u9haxUlVYlbD0OTKTRy1YxzjfQM8wcCDvjiTFmbGddT5l_d4loFIhq1AA51PFN3pUI8YMf-TtW5nv2UIaEnpl0HupyVjdFuKdg_RfA'
 
 unacked_messages_quota = 1000
 send_queue = []
@@ -37,7 +36,8 @@ def sendUpdatedListOfClientsToClients():
       'to': regid,
       'message_id': random_id(),
       'data': {
-         'users': connected_users.items()
+        'type': 'userListChangeEh',
+        'users': connected_users.items()
       }
     })
 
