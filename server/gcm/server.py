@@ -14,7 +14,7 @@ unacked_messages_quota = 1000
 send_queue = []
 client = None
 
-connected_users = set()
+connected_users = {}
 
 ################################################################################
 
@@ -26,53 +26,18 @@ def random_id():
 
 ################################################################################
 
-def message_callback(session, message):
-  global unacked_messages_quota
-  gcm = message.getTags('gcm')
-  if not gcm:
-    return
-  gcm_json = gcm[0].getData()
-  msg = json.loads(gcm_json)
-
-  print "Got: " + json.dumps(msg, indent=2)
-  if msg.has_key('payload'):
-    print "  Payload: " + json.dumps(json.loads(msg['payload']), indent=2)
-
-  if msg.has_key('message_type') and (msg['message_type'] == 'ack' or msg['message_type'] == 'nack'):
-    unacked_messages_quota += 1
-    return
-
-  # Acknowledge the incoming message immediately.
-  send({
-    'to': msg['from'],
-    'message_type': 'ack',
-    'message_id': msg['message_id']
-  })
-
-  # Add this user to the list of actives
-  # TODO: how to prune users? (Perhaps after they fail to ack a message?)
-  connected_users.add(msg['from'])
-  sendUpdatedListOfClientsToClients()
-
-  # Send a dummy echo response back to the app that sent the upstream message.
-  #send_queue.append({
-  #  'to': msg['from'],
-  #  'message_id': random_id(),
-  #  'data': {
-  #     'pong': msg['message_id']
-  #  }
-  #})
+def add_user(regid, name):
+  connected_users[regid] = name
 
 ################################################################################
 
 def sendUpdatedListOfClientsToClients():
-  userIds = list(connected_users);
-  for user in userIds:
+  for (regid,name) in connected_users.iteritems():
     send_queue.append({
-      'to': user,
+      'to': regid,
       'message_id': random_id(),
       'data': {
-         'users': userIds
+         'users': connected_users.items()
       }
     })
 
@@ -94,6 +59,59 @@ def flush_queued_messages():
 
 ################################################################################
 
+def message_callback(session, message):
+  global unacked_messages_quota
+  gcm = message.getTags('gcm')
+  if not gcm:
+    return
+  gcm_json = gcm[0].getData()
+  msg = json.loads(gcm_json)
+
+  # print "Got: " + json.dumps(msg, indent=2)
+  if msg.has_key('message_type') and (msg['message_type'] == 'ack' or msg['message_type'] == 'nack'):
+    unacked_messages_quota += 1
+    return
+
+  # Acknowledge the incoming message immediately.
+  send({
+    'to': msg['from'],
+    'message_type': 'ack',
+    'message_id': msg['message_id']
+  })
+
+  if not msg.has_key('payload'):
+    print "WARNING: No Payload!"
+    return
+
+  payload = json.loads(msg['payload'])
+  msg_type = payload['type']
+
+  if msg_type == 'identifySelfEh':
+    # Add this user to the list of actives
+    # TODO: how to prune users? (Perhaps after they fail to ack a message?)
+    add_user(msg['from'], payload['data']['name'])
+    sendUpdatedListOfClientsToClients()
+  elif msg_type == 'sendEh':
+    send_queue.append({
+      'to': payload['data']['to'],
+      'message_id': random_id(),
+      'data': {
+        'type': 'sendEh',
+        'from': msg['from']
+      }
+    })
+
+  # Send a dummy echo response back to the app that sent the upstream message.
+  #send_queue.append({
+  #  'to': msg['from'],
+  #  'message_id': random_id(),
+  #  'data': {
+  #     'pong': msg['message_id']
+  #  }
+  #})
+
+################################################################################
+
 def main():
   global client
   client = xmpp.Client('gcm.googleapis.com', debug=['socket'])
@@ -103,15 +121,6 @@ def main():
   if not auth:
     print 'Authentication failed!'
     sys.exit(1)
-
-  #send({
-  #  'to': REGISTRATION_ID,
-  #  'message_id': 'reg_id',
-  #  'data': {
-  #    'message_destination': 'RegId',
-  #    'message_id': random_id()
-  #  }
-  #})
 
   client.RegisterHandler('message', message_callback)
 
