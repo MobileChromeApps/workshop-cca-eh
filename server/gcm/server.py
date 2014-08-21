@@ -49,7 +49,7 @@ def sendEh(from_userid, to_userid):
     'message_id': random_id(),
     'data': {
       'type': 'sendEh',
-      'from': from_userid
+      'from_userid': from_userid
     }
   })
 
@@ -59,7 +59,7 @@ def send(json_dict):
   template = "<message><gcm xmlns='google:mobile:data'>{1}</gcm></message>"
   content = template.format(client.Bind.bound[0], json.dumps(json_dict))
   client.send(xmpp.protocol.Message(node = content))
-  print "Sent: " + json.dumps(json_dict, indent=2)
+  #print "Sent: " + json.dumps(json_dict, indent=2)
 
 ################################################################################
 
@@ -76,10 +76,9 @@ def message_callback(session, message):
   gcm = message.getTags('gcm')
   if not gcm:
     return
-  gcm_json = gcm[0].getData()
-  msg = json.loads(gcm_json)
+  msg = json.loads(gcm[0].getData())
 
-  # print "Got: " + json.dumps(msg, indent=2)
+  #print "Got: " + json.dumps(msg, indent=2)
   if msg.has_key('message_type') and (msg['message_type'] == 'ack' or msg['message_type'] == 'nack'):
     unacked_messages_quota += 1
     return
@@ -91,12 +90,12 @@ def message_callback(session, message):
     'message_id': msg['message_id']
   })
 
-  if not msg.has_key('payload'):
+  if not msg.has_key('data') or not msg['data'].has_key('payload'):
     print "WARNING: No Payload!"
     return
 
-  payload = json.loads(msg['payload'])
-  msg_type = payload['type']
+  payload = json.loads(msg['data']['payload'])
+  msg_type = payload['data']['type']
 
   if msg_type == 'identifySelfEh':
     # Add this user to the list of actives
@@ -104,7 +103,7 @@ def message_callback(session, message):
     add_user(msg['from'], payload['data']['name'])
     sendUpdatedListOfClientsToClients()
   elif msg_type == 'sendEh':
-    sendEh(msg['from'], payload['data']['to'])
+    sendEh(msg['from'], payload['data']['to_userid'])
 
   # Send a dummy echo response back to the app that sent the upstream message.
   #send_queue.append({
