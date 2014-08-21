@@ -104,14 +104,14 @@ def main():
     print 'Authentication failed!'
     sys.exit(1)
 
-  send({
-    'to': REGISTRATION_ID,
-    'message_id': 'reg_id',
-    'data': {
-      'message_destination': 'RegId',
-      'message_id': random_id()
-    }
-  })
+  #send({
+  #  'to': REGISTRATION_ID,
+  #  'message_id': 'reg_id',
+  #  'data': {
+  #    'message_destination': 'RegId',
+  #    'message_id': random_id()
+  #  }
+  #})
 
   client.RegisterHandler('message', message_callback)
 
