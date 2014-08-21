@@ -43,6 +43,18 @@ def sendUpdatedListOfClientsToClients():
 
 ################################################################################
 
+def sendEh(from_userid, to_userid):
+  send_queue.append({
+    'to': to_userid,
+    'message_id': random_id(),
+    'data': {
+      'type': 'sendEh',
+      'from': from_userid
+    }
+  })
+
+################################################################################
+
 def send(json_dict):
   template = "<message><gcm xmlns='google:mobile:data'>{1}</gcm></message>"
   content = template.format(client.Bind.bound[0], json.dumps(json_dict))
@@ -92,14 +104,7 @@ def message_callback(session, message):
     add_user(msg['from'], payload['data']['name'])
     sendUpdatedListOfClientsToClients()
   elif msg_type == 'sendEh':
-    send_queue.append({
-      'to': payload['data']['to'],
-      'message_id': random_id(),
-      'data': {
-        'type': 'sendEh',
-        'from': msg['from']
-      }
-    })
+    sendEh(msg['from'], payload['data']['to'])
 
   # Send a dummy echo response back to the app that sent the upstream message.
   #send_queue.append({
