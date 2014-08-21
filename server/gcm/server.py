@@ -95,8 +95,20 @@ def message_callback(session, message):
     return
 
   payload = json.loads(msg['data']['payload'])
-  msg_type = payload['data']['type']
 
+  # Is this the crspec gcm call?
+  if payload['data'].has_key('test'):
+    # Send a dummy echo response back to the app that sent the upstream message.
+    send_queue.append({
+      'to': msg['from'],
+      'message_id': random_id(),
+      'data': {
+         'pong': msg['message_id']
+      }
+    })
+    return
+
+  msg_type = payload['data']['type']
   if msg_type == 'identifySelfEh':
     # Add this user to the list of actives
     # TODO: how to prune users? (Perhaps after they fail to ack a message?)
@@ -105,14 +117,6 @@ def message_callback(session, message):
   elif msg_type == 'sendEh':
     sendEh(msg['from'], payload['data']['to_userid'])
 
-  # Send a dummy echo response back to the app that sent the upstream message.
-  #send_queue.append({
-  #  'to': msg['from'],
-  #  'message_id': random_id(),
-  #  'data': {
-  #     'pong': msg['message_id']
-  #  }
-  #})
 
 ################################################################################
 

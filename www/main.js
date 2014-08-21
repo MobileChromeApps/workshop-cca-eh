@@ -20,19 +20,19 @@ function pruneUsersNotInList(userids) {
 }
 
 function addOrUpdateUser(userid, name) {
-  if (!userid in userlist) {
+  if (!(userid in userlist)) {
     userlist[userid] = {
       name: name,
       inboundEhCount: 0,
       outboundEhCount: 0,
     };
   } else {
-    userlist[user].name = name;
+    userlist[userid].name = name;
   }
 }
 
 function increaseInboundEhCount(userid) {
-  userlist[userid].increaseInboundEhCount++;
+  userlist[userid].inboundEhCount++;
 }
 
 function increaseOutboundEhCount(userid) {
@@ -42,7 +42,10 @@ function increaseOutboundEhCount(userid) {
 /******************************************************************************/
 
 chrome.runtime.onStartup.addListener(function() {
-  connectGcm();
+  connectGcm(function(regid) {
+    console.log('Successfully Registered with reg_id:', regid)
+    identifySelfEh('Michal');
+  });
 });
 
 /******************************************************************************/
@@ -107,14 +110,16 @@ chrome.gcm.onMessagesDeleted.addListener(function() {
 
 /******************************************************************************/
 
-function connectGcm() {
+function connectGcm(callback) {
   chrome.gcm.register([GCM_SENDERID], function(regid) {
     if (regid === -1) {
       console.error(chrome.runtime.lastError);
       return;
     }
+    if (callback) {
+      callback(regid);
+    }
   });
-  console.log('Successfully Registered with reg_id:', regid)
 }
 
 /******************************************************************************/
@@ -123,7 +128,7 @@ function identifySelfEh(displayName, callback) {
   sendMessage({
     'type': 'identifySelfEh',
     'name': displayName
-  }, callback);
+  }, updateUI);
 }
 
 function onUserListChangeEh(userlist) {
@@ -135,10 +140,13 @@ function onUserListChangeEh(userlist) {
     addOrUpdateUser(userid, username);
   });
   pruneUsersNotInList(userids);
+  updateUI();
 }
 
 function onIncomingEh(from_userid) {
   increaseInboundEhCount(from_userid);
+  // TODO chrome.notification
+  updateUI();
 }
 
 function sendEh(userid, callback) {
@@ -146,8 +154,19 @@ function sendEh(userid, callback) {
   sendMessage({
     'type': 'sendEh',
     'to_userid': userid
-  }, callback);
+  }, updateUI);
 }
 
 /******************************************************************************/
 
+function updateUI() {
+  document.body.innerHTML = "";
+  Object.keys(userlist).forEach(function(userid) {
+    var div = document.createElement('div');
+    div.innerText = userlist[userid].name;
+    div.innerText += '[ <' + userlist[userid].inboundEhCount + ' ]';
+    div.innerText += '[ >' + userlist[userid].outboundEhCount + ' ]';
+    div.onclick = sendEh.bind(null, userid);
+    document.body.appendChild(div);
+  });
+}
