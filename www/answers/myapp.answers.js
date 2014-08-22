@@ -59,6 +59,7 @@ function onIncomingEh(from_userid) {
     title:'Eh',
     message: userlist[from_userid].name + ' x' + userlist[from_userid].inboundEhCount
   });
+  play("assets/sounds/ASDIC.wav");
 
   updateUI();
 }
