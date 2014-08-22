@@ -76,7 +76,7 @@ chrome.gcm.onMessage.addListener(function(msg) {
       onUserListChangeEh(JSON.parse(msg.data.users));
       break;
     };
-    case 'sendEh': {
+    case 'incomingEh': {
       onIncomingEh(msg.data.from_userid);
       break;
     };

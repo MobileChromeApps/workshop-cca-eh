@@ -43,12 +43,12 @@ def sendUpdatedListOfClientsToClients():
 
 ################################################################################
 
-def sendEh(from_userid, to_userid):
+def sendIncomingEh(from_userid, to_userid):
   send_queue.append({
     'to': to_userid,
     'message_id': random_id(),
     'data': {
-      'type': 'sendEh',
+      'type': 'incomingEh',
       'from_userid': from_userid
     }
   })
@@ -116,7 +116,7 @@ def message_callback(session, message):
     add_user(msg['from'], payload['data']['name'])
     sendUpdatedListOfClientsToClients()
   elif msg_type == 'sendEh':
-    sendEh(msg['from'], payload['data']['to_userid'])
+    sendIncomingEh(msg['from'], payload['data']['to_userid'])
 
 
 ################################################################################
