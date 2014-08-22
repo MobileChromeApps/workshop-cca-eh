@@ -2,6 +2,10 @@
 
 /******************************************************************************/
 
+var MY_DISPLAY_NAME = 'Anonymous Coward';
+
+/******************************************************************************/
+
 var userlist = {};
 
 /******************************************************************************/
@@ -55,6 +59,7 @@ function onIncomingEh(from_userid) {
     title:'Eh',
     message: userlist[from_userid].name + ' x' + userlist[from_userid].inboundEhCount
   });
+
   updateUI();
 }
 
@@ -104,7 +109,7 @@ function updateUI() {
 document.addEventListener('DOMContentLoaded', function() {
   connectGcm(function(regid) {
     console.log('Successfully Registered with reg_id:', regid)
-    identifySelfEh('Other Michal');
+    identifySelfEh(MY_DISPLAY_NAME);
   });
 });
 

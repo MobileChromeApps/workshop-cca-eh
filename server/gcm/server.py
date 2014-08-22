@@ -107,7 +107,7 @@ def message_callback(session, message):
     })
     return
 
-  print "Got: " + json.dumps(payload, indent=2)
+  #print "Got: " + json.dumps(payload, indent=2)
 
   msg_type = payload['data']['type']
   if msg_type == 'identifySelfEh':
