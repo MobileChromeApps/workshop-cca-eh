@@ -20,11 +20,10 @@ chrome.notifications.onButtonClicked.addListener(function(notificationId, button
 /******************************************************************************/
 
 function createLocalNotification(notificationId, options, callback) {
-  if (!('iconUrl' in options)) {
-    options.iconUrl = 'assets/inbox-64x64.png';
-  }
+  options.iconUrl = options.iconUrl || '';
   options.message = options.message || 'Eh';
-  chrome.notifications.create(notificationId, options, callback || function() {});
+  callback = callback || function() {}
+  chrome.notifications.create(notificationId, options, callback);
 }
 
 /******************************************************************************/
