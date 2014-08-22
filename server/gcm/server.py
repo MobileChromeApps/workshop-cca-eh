@@ -89,11 +89,15 @@ def message_callback(session, message):
     'message_id': msg['message_id']
   })
 
-  if not msg.has_key('data') or not msg['data'].has_key('payload'):
+  if not msg.has_key('data'):
     print "WARNING: No Payload!"
     return
 
-  payload = json.loads(msg['data']['payload'])
+  payload = None
+  if (msg['data'].has_key('payload')):
+    payload = json.loads(msg['data']['payload'])
+  else:
+    payload = msg
 
   # Is this the crspec gcm call?
   if payload['data'].has_key('test'):
