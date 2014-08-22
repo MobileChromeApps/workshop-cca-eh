@@ -38,7 +38,7 @@ function addOrUpdateUser(userid, name) {
 document.addEventListener('DOMContentLoaded', function() {
   connectGcm(function(regid) {
     console.log('Successfully Registered with reg_id:', regid)
-    identifySelfEh('Michal');
+    identifySelfEh('Other Michal');
   });
 });
 
