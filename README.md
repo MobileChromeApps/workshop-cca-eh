@@ -40,7 +40,7 @@ sendEh(userid, callback)
   * Bonus: Experiment with [chrome.alarms](https://developer.chrome.com/apps/alarms) firing delayed local notifications while app is in background
 
 * Use [chrome.gcm](https://developer.chrome.com/apps/gcm) to implement in this order:
-  1. Implement `identifySelfEh`
+  * Implement `identifySelfEh`
 
 ```
 // Outgoing gcm msg with 'data' value of:
@@ -50,17 +50,17 @@ sendEh(userid, callback)
 }
 ```
 
-  2. Implement `onUserListChangeEh`
+  * Implement `onUserListChangeEh`
 
 ```
 // Incoming gcm msg with 'data' value of:
 {
   'type': 'userListChangeEh',
-  'users': [[userid1, username1], [userid2, username2], ...]
+  'users': '[[userid1, username1], [userid2, username2], ...]' // NOTICE string type, must pass through JSON.parse
 }
 ```
 
-  3. Implement `onIncomingEh`
+  * Implement `onIncomingEh`
 
 ```
 // Incoming gcm msg with 'data' value of:
@@ -70,7 +70,7 @@ sendEh(userid, callback)
 }
 ```
 
-  4. Implement `sendEh`
+  * Implement `sendEh`
 
 ```
 // Outgoing gcm msg with 'data' value of:
@@ -80,4 +80,6 @@ sendEh(userid, callback)
 }
 ```
 
-* Make it shine!
+### Now Make it Shine!
+
+* Please submit Pull Requests to fix any issues with this repo
