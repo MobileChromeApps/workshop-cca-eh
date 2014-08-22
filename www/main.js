@@ -25,18 +25,11 @@ function addOrUpdateUser(userid, name) {
       name: name,
       inboundEhCount: 0,
       outboundEhCount: 0,
+      isCurrentlySendingMessageEh: false
     };
   } else {
     userlist[userid].name = name;
   }
-}
-
-function increaseInboundEhCount(userid) {
-  userlist[userid].inboundEhCount++;
-}
-
-function increaseOutboundEhCount(userid) {
-  userlist[userid].outboundEhCount++;
 }
 
 /******************************************************************************/
@@ -51,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 /******************************************************************************/
 
-function sendMessage(data, success) {
+function sendMessage(data, callback) {
   var message = {
     'destinationId' : GCM_SENDER,
     'messageId' : String(Math.random()),
@@ -59,19 +52,15 @@ function sendMessage(data, success) {
     'data' : data
   };
 
-  try {
-    chrome.gcm.send(message, function(msgid) {
-      if (msgid === -1) {
-        console.error(chrome.runtime.lastError);
-        return;
-      }
-      if (typeof success !== 'function')
-        return;
-      success(msgid);
-    });
-  } catch (e) {
-    console.error(e);
-  }
+  chrome.gcm.send(message, function(msgid) {
+    if (msgid === -1) {
+      console.error(chrome.runtime.lastError);
+      //return;
+    }
+    if (typeof callback !== 'function')
+      return;
+    callback(msgid);
+  });
 }
 
 /******************************************************************************/
@@ -174,7 +163,7 @@ function onUserListChangeEh(userlist) {
 }
 
 function onIncomingEh(from_userid) {
-  increaseInboundEhCount(from_userid);
+  userlist[userid].inboundEhCount++;
   createNotification({
     type:'basic',
     title:'Basic Notification',
@@ -184,11 +173,18 @@ function onIncomingEh(from_userid) {
 }
 
 function sendEh(userid, callback) {
-  increaseOutboundEhCount(userid);
+  userlist[userid].outboundEhCount++;
+  userlist[userid].isCurrentlySendingMessageEh = true;
+  updateUI();
+
   sendMessage({
     'type': 'sendEh',
     'to_userid': userid
-  }, updateUI);
+  }, function() {
+    userlist[userid].isCurrentlySendingMessageEh = false;
+    // Gcm call returns so fast, we introduce an artificial delay
+    setTimeout(updateUI, 250);
+  });
 }
 
 /******************************************************************************/
@@ -198,9 +194,11 @@ function updateUI() {
   Object.keys(userlist).forEach(function(userid) {
     var div = document.createElement('div');
     div.classList.add('user');
-    div.innerText = userlist[userid].name;
-    div.innerText += '[ <' + userlist[userid].inboundEhCount + ' ]';
-    div.innerText += '[ >' + userlist[userid].outboundEhCount + ' ]';
+    if (userlist[userid].isCurrentlySendingMessageEh) {
+      div.innerText += "...";
+    } else {
+      div.innerText = userlist[userid].name;
+    }
     div.onclick = sendEh.bind(null, userid);
     document.body.appendChild(div);
   });
