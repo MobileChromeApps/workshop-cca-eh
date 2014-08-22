@@ -114,17 +114,12 @@ chrome.notifications.onButtonClicked.addListener(function(notificationId, button
 
 /******************************************************************************/
 
-var numIds = 0;
-function createNotification(options, callback) {
-  var notificationId = 'id' + numIds;
-  numIds++;
+function createNotification(notificationId, options, callback) {
   if (!('iconUrl' in options)) {
     options.iconUrl = 'assets/inbox-64x64.png';
   }
-  options.message = options.message || 'notificationId = ' + notificationId;
-  chrome.notifications.create(notificationId, options, function(notificationId) {
-    if (callback) callback(notificationId);
-  });
+  options.message = options.message || 'Eh';
+  chrome.notifications.create(notificationId, options, callback);
 }
 
 /******************************************************************************/
@@ -163,11 +158,11 @@ function onUserListChangeEh(userlist) {
 }
 
 function onIncomingEh(from_userid) {
-  userlist[userid].inboundEhCount++;
-  createNotification({
+  userlist[from_userid].inboundEhCount++;
+  createNotification(from_userid, {
     type:'basic',
-    title:'Basic Notification',
-    message: 'the quick slick thick brown fox jumps over the gosh darned lazy hazy brazy mazy dog.'
+    title:'Eh',
+    message: userlist[from_userid].name + ' x' + userlist[from_userid].inboundEhCount
   });
   updateUI();
 }
@@ -189,17 +184,24 @@ function sendEh(userid, callback) {
 
 /******************************************************************************/
 
+function createBlock(text, onclick) {
+  var div = document.createElement('div');
+  div.innerText = text;
+  div.onclick = onclick;
+  document.body.appendChild(div);
+  return div;
+}
+
 function updateUI() {
   document.body.innerHTML = "";
+
+  if (Object.keys(userlist).length == 0) {
+    var div = createBlock('Waiting for users');
+  }
+
   Object.keys(userlist).forEach(function(userid) {
-    var div = document.createElement('div');
+    var text = userlist[userid].isCurrentlySendingMessageEh ? '...' : userlist[userid].name;
+    var div = createBlock(text, sendEh.bind(null, userid));
     div.classList.add('user');
-    if (userlist[userid].isCurrentlySendingMessageEh) {
-      div.innerText += "...";
-    } else {
-      div.innerText = userlist[userid].name;
-    }
-    div.onclick = sendEh.bind(null, userid);
-    document.body.appendChild(div);
   });
 }

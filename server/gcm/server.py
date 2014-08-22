@@ -78,7 +78,6 @@ def message_callback(session, message):
     return
   msg = json.loads(gcm[0].getData())
 
-  #print "Got: " + json.dumps(msg, indent=2)
   if msg.has_key('message_type') and (msg['message_type'] == 'ack' or msg['message_type'] == 'nack'):
     unacked_messages_quota += 1
     return
