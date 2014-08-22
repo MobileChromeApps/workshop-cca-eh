@@ -3,27 +3,9 @@ html {
 }
 
 body {
-  box-shadow: 0 0 50px #ddd inset;
-  -webkit-box-shadow: 0 0 50px #ddd inset;
   font-family: OpenSans, Helvetica, Arial, sans;
   height: 100%;
   margin: 0;
   text-align: center;
-}
-
-.user {
-  font-size: 20pt;
-  padding: 1em;
-}
-
-.user:nth-of-type(3n + 1) {
-  background-color: red;
-}
-
-.user:nth-of-type(3n + 2) {
-  background-color: green;
-}
-
-.user:nth-of-type(3n + 3) {
-  background-color: blue;
+  background-color: #444;
 }

@@ -80,6 +80,8 @@ sendEh(userid, callback)
 }
 ```
 
+* You can debug GCM with the help of a "test" message.  Just call `sendGcmMessage({'test':'test'})` and you should receive a reply.
+
 ### Now Make it Shine!
 
 * Please submit Pull Requests to fix any issues with this repo
