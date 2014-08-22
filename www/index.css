@@ -11,6 +11,19 @@ body {
   text-align: center;
 }
 
-img {
-  margin: 50px auto;
+.user {
+  font-size: 20pt;
+  padding: 1em;
+}
+
+.user:nth-of-type(3n + 1) {
+  background-color: red;
+}
+
+.user:nth-of-type(3n + 2) {
+  background-color: green;
+}
+
+.user:nth-of-type(3n + 3) {
+  background-color: blue;
 }

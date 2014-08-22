@@ -41,7 +41,8 @@ function increaseOutboundEhCount(userid) {
 
 /******************************************************************************/
 
-chrome.runtime.onStartup.addListener(function() {
+//chrome.runtime.onStartup.addListener(function() {
+document.addEventListener('DOMContentLoaded', function() {
   connectGcm(function(regid) {
     console.log('Successfully Registered with reg_id:', regid)
     identifySelfEh('Michal');
@@ -107,6 +108,35 @@ chrome.gcm.onMessagesDeleted.addListener(function() {
   console.error.apply(console, arguments);
 });
 
+/******************************************************************************/
+
+chrome.notifications.onClosed.addListener(function(notificationId, byUser) {
+  logger('onClosed fired. notificationId = ' + notificationId + ', byUser = ' + byUser);
+});
+
+chrome.notifications.onClicked.addListener(function(notificationId) {
+  logger('onClicked fired. notificationId = ' + notificationId);
+  chrome.notifications.clear(notificationId, function(wasCleared) {});
+});
+
+chrome.notifications.onButtonClicked.addListener(function(notificationId, buttonIndex) {
+  logger('onButtonClicked fired. notificationId = ' + notificationId + ', buttonIndex = ' + buttonIndex);
+});
+
+/******************************************************************************/
+
+var numIds = 0;
+function createNotification(options, callback) {
+  var notificationId = 'id' + numIds;
+  numIds++;
+  if (!('iconUrl' in options)) {
+    options.iconUrl = 'assets/inbox-64x64.png';
+  }
+  options.message = options.message || 'notificationId = ' + notificationId;
+  chrome.notifications.create(notificationId, options, function(notificationId) {
+    if (callback) callback(notificationId);
+  });
+}
 
 /******************************************************************************/
 
@@ -116,7 +146,7 @@ function connectGcm(callback) {
       console.error(chrome.runtime.lastError);
       return;
     }
-    if (callback) {
+    if (typeof callback === 'function') {
       callback(regid);
     }
   });
@@ -145,7 +175,11 @@ function onUserListChangeEh(userlist) {
 
 function onIncomingEh(from_userid) {
   increaseInboundEhCount(from_userid);
-  // TODO chrome.notification
+  createNotification({
+    type:'basic',
+    title:'Basic Notification',
+    message: 'the quick slick thick brown fox jumps over the gosh darned lazy hazy brazy mazy dog.'
+  });
   updateUI();
 }
 
@@ -163,6 +197,7 @@ function updateUI() {
   document.body.innerHTML = "";
   Object.keys(userlist).forEach(function(userid) {
     var div = document.createElement('div');
+    div.classList.add('user');
     div.innerText = userlist[userid].name;
     div.innerText += '[ <' + userlist[userid].inboundEhCount + ' ]';
     div.innerText += '[ >' + userlist[userid].outboundEhCount + ' ]';

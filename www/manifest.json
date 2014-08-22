@@ -23,6 +23,7 @@
   },
   "permissions": [
     "gcm",
+    "notifications",
     "<all_urls>"
   ],
 
