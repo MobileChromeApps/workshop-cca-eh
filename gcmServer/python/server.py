@@ -81,7 +81,7 @@ def handleMessageInApplicationSpecificManner(msg):
 
   def identifySelfEh(msg, payload):
     # TODO: how to prune users? (Perhaps after they fail to ack a message?)
-    connected_users[msg["from"]] = payload["data"]["name"]
+    connected_users[msg["from"]] = payload["name"]
     sendUpdatedListOfClientsToClients()
 
   def sendUpdatedListOfClientsToClients():
@@ -97,11 +97,11 @@ def handleMessageInApplicationSpecificManner(msg):
 
   def sendEh(msg, payload):
     send_queue.append({
-      'to': payload['data']['to_userid'],
+      'to': payload['to_userid'],
       'message_id': random_id(),
       'data': {
         'type': 'incomingEh',
-        'from_userid': from_userid
+        'from_userid': msg['from']
       }
     })
 
