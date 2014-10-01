@@ -18,7 +18,7 @@
   },
   "app": {
     "background": {
-      "scripts": ["background.js"]
+      "scripts": ["background/events.js", "background/helpers.js", "background/main.js"]
     }
   },
   "permissions": [

@@ -2,11 +2,12 @@
 
 /******************************************************************************/
 
-var MY_DISPLAY_NAME = 'Anonymous Coward';
+var DEFAULT_DISPLAY_NAME = 'Anonymous Coward';
 
 /******************************************************************************/
 
 var userlist = {};
+var helpers = null;
 
 /******************************************************************************/
 
@@ -31,10 +32,33 @@ function addOrUpdateUser(userid, name) {
   }
 }
 
+function handleIncomingGcmMessage(msg) {
+  if (typeof msg.data.type !== 'string') {
+    console.error('Invalid message format:', JSON.stringify(msg, null, 2));
+    return;
+  }
+  // TODO: move this out to helpers?
+  switch(msg.data.type) {
+    case 'userListChangeEh': {
+      onUserListChangeEh(JSON.parse(msg.data.users));
+      break;
+    };
+    case 'incomingEh': {
+      onIncomingEh(msg.data.from_userid);
+      break;
+    };
+    default: {
+      console.error('Invalid message type:', JSON.stringify(msg, null, 2));
+      return;
+    }
+  }
+}
+
+
 /******************************************************************************/
 
 function identifySelfEh(displayName, callback) {
-  sendGcmMessage({
+  helpers.sendGcmMessage({
     'type': 'identifySelfEh',
     'name': displayName
   }, updateUI);
@@ -53,13 +77,14 @@ function onUserListChangeEh(userlist) {
 }
 
 function onIncomingEh(from_userid) {
+  console.log(from_userid);
   userlist[from_userid].inboundEhCount++;
-  createLocalNotification(from_userid, {
+  helpers.createLocalNotification(from_userid, {
     type:'basic',
     title:'Eh',
     message: userlist[from_userid].name + ' x' + userlist[from_userid].inboundEhCount
   });
-  play("assets/sounds/ASDIC.wav");
+  play("/assets/sounds/ASDIC.wav");
 
   updateUI();
 }
@@ -69,7 +94,7 @@ function sendEh(userid, callback) {
   userlist[userid].isCurrentlySendingMessageEh = true;
   updateUI();
 
-  sendGcmMessage({
+  helpers.sendGcmMessage({
     'type': 'sendEh',
     'to_userid': userid
   }, function() {
@@ -81,6 +106,7 @@ function sendEh(userid, callback) {
 
 /******************************************************************************/
 
+// TODO: Replace this with Polymer list data-binding
 function createBlock(text, onclick) {
   var div = document.createElement('div');
   div.innerText = text;
@@ -104,13 +130,15 @@ function updateUI() {
 }
 
 /******************************************************************************/
-/******************************************************************************/
 
-//chrome.runtime.onStartup.addListener(function() {
 document.addEventListener('DOMContentLoaded', function() {
-  connectGcm(function(regid) {
-    console.log('Successfully Registered with reg_id:', regid)
-    identifySelfEh(MY_DISPLAY_NAME);
+  chrome.runtime.getBackgroundPage(function(bgpage) {
+    if (!bgpage)
+      return; // TODO: chrome desktop calls this once with null.  bug?
+    bgpage.onIncomingGcmMessageCallbacks.push(handleIncomingGcmMessage);
+    helpers = bgpage;
+
+    identifySelfEh(DEFAULT_DISPLAY_NAME);
   });
 });
 
