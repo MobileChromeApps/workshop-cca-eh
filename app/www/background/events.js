@@ -10,6 +10,7 @@ chrome.app.runtime.onLaunched.addListener(function() {
 /******************************************************************************/
 
 chrome.gcm.onMessage.addListener(function(msg) {
+  console.log('here');
   handleIncomingGcmMessage(msg);
 });
 
@@ -29,6 +30,7 @@ chrome.notifications.onClosed.addListener(function(notificationId) {
 chrome.notifications.onClicked.addListener(function(notificationId) {
   chrome.notifications.clear(notificationId, function(wasCleared) {
   });
+  handleNotificationClick(notificationId);
 });
 
 chrome.notifications.onButtonClicked.addListener(function(notificationId, buttonIndex) {

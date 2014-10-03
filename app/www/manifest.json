@@ -18,7 +18,13 @@
   },
   "app": {
     "background": {
-      "scripts": ["background/events.js", "background/helpers.js", "background/main.js"]
+      "scripts": [
+        "background/sound.helpers.js",
+        "background/events.js",
+        "background/helpers.js",
+        "background/contacts.js",
+        "background/main.js"
+      ]
     }
   },
   "permissions": [

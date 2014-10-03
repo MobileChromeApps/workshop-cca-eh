@@ -10,8 +10,9 @@ var options = {
   preferredSaslMechanism : 'PLAIN'
 };
 
-var cl = new xmpp.Client(options);
+console.log('about to connect');
 
+var cl = new xmpp.Client(options);
 cl.on('online', function()
 {
     console.log("XMPP Online");
