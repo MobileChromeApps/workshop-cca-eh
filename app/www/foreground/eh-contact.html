@@ -1,0 +1,34 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<polymer-element name="eh-contact">
+  <template>
+    <style>
+    :host {
+      display: block;
+      position: relative;
+      background-color: white;
+      padding: 20px;
+      width: 100%;
+      font-size: 1.2rem;
+      font-weight: 300;
+    }
+    .eh-contact-header {
+      margin-bottom: 10px;
+    }
+    .eh-contact-header ::content h2 {
+      margin: 0;
+      font-size: 1.8rem;
+      font-weight: 300;
+    }
+    </style>
+
+    <div class="eh-contact-header" layout horizontal center>
+      <content select="h2"></content>
+    </div>
+    <content></content>
+  </template>
+
+  <script>
+  Polymer({});
+  </script>
+</polymer-element>

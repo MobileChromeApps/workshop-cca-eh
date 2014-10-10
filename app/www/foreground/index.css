@@ -1,29 +1,20 @@
-html {
+html, body {
   height: 100%;
+  margin: 0;
+  background-color: #E5E5E5;
 }
 
 body {
-  background-color: #222;
-  font-family: OpenSans, Helvetica, Arial, sans;
-  height: 100%;
-  margin: 0;
-  text-align: center;
   overflow: auto;
 }
 
-.user {
-  font-size: 20pt;
-  padding: 1em;
+core-header-panel {
+  height: 100%;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
-.user:nth-of-type(3n + 1) {
-  background-color: red;
-}
-
-.user:nth-of-type(3n + 2) {
-  background-color: green;
-}
-
-.user:nth-of-type(3n + 3) {
-  background-color: blue;
+core-toolbar {
+  background: #03a9f4;
+  color: white;
 }
