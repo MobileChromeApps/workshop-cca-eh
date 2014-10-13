@@ -3,7 +3,10 @@
 /******************************************************************************/
 
 chrome.app.runtime.onLaunched.addListener(function() {
-  chrome.app.window.create('/foreground/vulcanized.html', {}, function(win) {
+  var opts = {
+    id: 'eh'
+  };
+  chrome.app.window.create('/foreground/vulcanized.html', opts, function(win) {
   });
 });
 

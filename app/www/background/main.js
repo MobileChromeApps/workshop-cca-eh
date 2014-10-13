@@ -71,6 +71,10 @@ function handleIncomingGcmMessage(msg) {
       return;
     }
   }
+
+  chrome.app.window.getAll().forEach(function(appWindow) {
+    appWindow.contentWindow.updateUI();
+  });
 }
 
 function handleNotificationClick(notificationId) {
