@@ -118,7 +118,11 @@ def handleMessageInApplicationSpecificManner(msg):
     return;
 
   handler = handlers[payload['type']]
-  handler(msg, payload)
+  try:
+    handler(msg, payload)
+  except e:
+    print "Handler of type " + payload['type'] + " had a meltdown:"
+    print e
 
 ################################################################################
 
