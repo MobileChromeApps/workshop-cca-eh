@@ -1,22 +1,20 @@
 {
-  "packageId": "org.chromium.apps.ChromeAppsApiTests",
-  "versionCode": 1,
-  "CFBundleVersion": "1.1.1",
+  "packageId": "com.mmocny.eh.app",
 
   // platform overrides
   "android": {
     "oauth2": {
-      "client_id": "420833503950-k76f32itrro0pm55hhu3t7al7dj04djv.apps.googleusercontent.com"
+      "client_id": "197187574279-o3mvbghalscps7b1d5qmvd60vlhensld.apps.googleusercontent.com"
     }
   },
   "ios": {
     "oauth2": {
-      "client_id": "420833503950-j7sf4dmbuhgnsphg855uqj8khnof8v8b.apps.googleusercontent.com"
+      "client_id": ""
     }
   },
   "web": {
     "oauth2": {
-      "client_id": "420833503950-1ue85qqi4jfhlm4jp8cei9j26t6lml8l.apps.googleusercontent.com"
+      "client_id": ""
     }
   }
 }

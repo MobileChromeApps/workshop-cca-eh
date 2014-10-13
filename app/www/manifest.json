@@ -3,7 +3,7 @@
   "description": "",
   "manifest_version": 2,
   "minimum_chrome_version": "36",
-  "version": "0.1.1",
+  "version": "1.0.0",
   "offline_enabled": true,
   "icons": {
     "16": "assets/icons/icon16.png",
@@ -33,10 +33,9 @@
     "<all_urls>"
   ],
 
-  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAh6XIwsoka6hUjQ+YvR+4URrYVjsSAVuPCmqIi1LQhBWiwInV2nviFVS5mbok4GMr3GXQNSaCN2u9e1lQXgz9/+6strxVfwHfPM1oRn0lJmwYozqGYBrRLkFrdIV3+/ECW3fMYDVJXOohsbs/m+DEkKaEXZXM1AkSKRsgtTKls9qBjOK8lZF7rKPN8Rx0ikqUS8i42Llxc3OfgXWi99WH/VByrxZbc/EvR/HKM9MzzGvAy1510vVB2MbveX5YAxgvTIJUAC8ZUv5RnfYK4GWGQoF+n83o6YIIONfC3pnM0gRfLIaz4+gZaY3KuYocpNHp6b/bRhr49kT/oER8TkOW7QIDAQAB",
-
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAgz1mTPskjtGVirMpr858hRWdaZPpVkcxX6oCIYbOxkYW2GF4hW6Wc6zwasTl+l2yY61qTEEj9VIgrZLYIlFmDNJDpQ5KXeoPpOpfqflSI9GXRw6Eolj3puEVgU2dH5naAxJTHBudAdOLAxdkhiAElNaLxZ3VnccXc6GokuuKhCsTdjAi6dwuCxEteIgyb1H4t/FHe0v42FugZvEqg2xUVZRQHIlgKx1frVPtJdwTuGsuFKA97ItOYbZ7W9vO/tTKqtHqO6sS2BVFBzh0ElpjxFHuUtn5qggB/UMeNAgrvOfwTicpjXcJOU3mUgoVWhkiHPh8fW9tOBpCD8hPASdWXQIDAQAB",
   "oauth2": {
-    "client_id": "420833503950-i1soq7l5m5kilfcooanqbsukg08jcrkp.apps.googleusercontent.com",
+    "client_id": "197187574279-0vp4o4vg2ra448hlotnq0b3md981r7em.apps.googleusercontent.com",
     "scopes": [
       "https://www.googleapis.com/auth/userinfo.profile",
       "https://www.googleapis.com/auth/gcm_for_chrome",
