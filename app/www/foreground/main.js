@@ -8,6 +8,7 @@ var bg = null;
 
 function updateUI() {
   var userlist = bg.userlist;
+  /*
   if (Object.keys(userlist).length == 0) {
     userlist = {
       0: {
@@ -20,6 +21,7 @@ function updateUI() {
       },
     };
   }
+  */
   var contacts = Object.keys(userlist).map(function(userid) {
     return {
       name: userlist[userid].isCurrentlySendingMessageEh ? '...' : userlist[userid].name
