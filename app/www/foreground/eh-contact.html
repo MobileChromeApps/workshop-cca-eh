@@ -1,6 +1,6 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 
-<polymer-element name="eh-contact">
+<polymer-element name="eh-contact" attributes="contactName">
   <template>
     <style>
     :host {
@@ -22,13 +22,18 @@
     }
     </style>
 
-    <div class="eh-contact-header" layout horizontal center>
-      <content select="h2"></content>
+    <div class="eh-contact-header" on-tap="{{onTap}}" layout horizontal center>
+      <h3>{{contactName}}</h3>
+      <!--<content></content>-->
     </div>
-    <content></content>
   </template>
 
   <script>
-  Polymer({});
+  Polymer({
+    contactName: 'Anonymous Coward',
+    onTap: function(event, detail, sender) {
+      console.log(this.contactName);
+    }
+  });
   </script>
 </polymer-element>

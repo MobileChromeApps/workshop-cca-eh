@@ -29,11 +29,7 @@ function updateUI() {
 }
 
 function main() {
-  // Start a raf-based event loop
-  (function raf() {
-    updateUI();
-    requestAnimationFrame(raf);
-  }());
+  updateUI();
 }
 
 /******************************************************************************/
