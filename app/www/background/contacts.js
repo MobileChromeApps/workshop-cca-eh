@@ -17,6 +17,7 @@ function pruneUsersNotInList(userids) {
 function addOrUpdateUser(userid, name) {
   if (!(userid in userlist)) {
     userlist[userid] = {
+      userid: userid,
       name: name,
       inboundEhCount: 0,
       outboundEhCount: 0,

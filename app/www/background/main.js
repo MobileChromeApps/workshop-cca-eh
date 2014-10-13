@@ -15,11 +15,11 @@ function identifySelfEh(displayName, callback) {
 
 function onUserListChangeEh(userlist) {
   updateUserList(userlist);
-  //updateUI();
+  updateUIs();
 }
 
 function onIncomingEh(from_userid) {
-  console.log('Eh from', from_userid);
+  console.log('received Eh from', from_userid);
 
   userlist[from_userid].inboundEhCount++;
 
@@ -30,14 +30,14 @@ function onIncomingEh(from_userid) {
     message: userlist[from_userid].name + ' x' + userlist[from_userid].inboundEhCount
   });
 
-  play("/assets/sounds/ASDIC.wav");
-  //updateUI();
+  play("/assets/sounds/ASDIC.wav"); // TODO: replace this
+
+  updateUIs();
 }
 
 function sendEh(userid, callback) {
   userlist[userid].outboundEhCount++;
   userlist[userid].isCurrentlySendingMessageEh = true;
-  //updateUI();
 
   sendGcmMessage({
     'type': 'sendEh',
@@ -45,7 +45,7 @@ function sendEh(userid, callback) {
   }, function() {
     userlist[userid].isCurrentlySendingMessageEh = false;
     // Gcm call returns so fast, we introduce an artificial delay
-    //setTimeout(updateUI, 250);
+    callback();
   });
 }
 
@@ -71,13 +71,15 @@ function handleIncomingGcmMessage(msg) {
       return;
     }
   }
-
-  chrome.app.window.getAll().forEach(function(appWindow) {
-    appWindow.contentWindow.updateUI();
-  });
 }
 
 function handleNotificationClick(notificationId) {
+}
+
+function updateUIs() {
+  chrome.app.window.getAll().forEach(function(appWindow) {
+    appWindow.contentWindow.updateUI();
+  });
 }
 
 /******************************************************************************/
@@ -87,7 +89,7 @@ function handleNotificationClick(notificationId) {
   onIncomingGcmMessageCallbacks.push(handleIncomingGcmMessage);
 
   connectGcm(function(regid) {
-    console.log('Successfully Registered with GCM server:', regid)
+    console.log('Successfully Registered with GCM server')
     identifySelfEh(MY_DEFAULT_DISPLAY_NAME);
   });
 }());

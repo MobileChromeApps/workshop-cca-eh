@@ -9,8 +9,8 @@
     <template if="{{contacts.length == 0}}">
       <h3>You are all alone!</h3>
     </template>
-    <template repeat="{{contacts}}">
-      <eh-contact contactName="{{name}}"></eh-contact>
+    <template repeat="{{contact in contacts}}">
+      <eh-contact contactInfo="{{contact}}"></eh-contact>
     </template>
   </template>
 
