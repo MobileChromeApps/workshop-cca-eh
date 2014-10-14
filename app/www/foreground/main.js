@@ -19,7 +19,23 @@ function sendEhTo(contactInfo) {
 
 /******************************************************************************/
 
+function attemptLogin() {
+  chrome.identity.getAuthToken({ 'interactive': true }, function(token) {
+    if (chrome.runtime.lastError) {
+      console.error(chrome.runtime.lastError);
+      return;
+    }
+    console.log(token);
+  });
+  chrome.identity.getProfileUserInfo(function(userInfo) {
+    console.log(userInfo);
+  });
+}
+
+/******************************************************************************/
+
 function main() {
+  attemptLogin();
   updateUI();
 }
 
