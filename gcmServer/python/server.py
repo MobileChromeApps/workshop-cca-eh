@@ -82,10 +82,10 @@ def handleMessageInApplicationSpecificManner(msg):
   def identifySelfEh(msg, payload):
     # TODO: how to prune users? (Perhaps after they fail to ack a message?)
     connected_users[msg["from"]] = payload["name"]
-    sendUpdatedListOfClientsToClients()
+    for regid, _ in connected_users.iteritems():
+      sendUpdatedListOfClientsTo(regid)
 
-  def sendUpdatedListOfClientsToClients():
-    for (regid,name) in connected_users.iteritems():
+  def sendUpdatedListOfClientsTo(regid):
       send_queue.append({
         'to': regid,
         'message_id': random_id(),
@@ -94,6 +94,9 @@ def handleMessageInApplicationSpecificManner(msg):
           'users': filter(lambda (r,n): r != regid, connected_users.items())
         }
       })
+
+  def remindMeAgainEh(msg, payload):
+    sendUpdatedListOfClientsTo(msg["from"])
 
   def sendEh(msg, payload):
     send_queue.append({
@@ -109,6 +112,7 @@ def handleMessageInApplicationSpecificManner(msg):
   handlers = {
     'ping': handlePingMessage,
     'identifySelfEh': identifySelfEh,
+    'remindMeAgainEh': remindMeAgainEh,
     'sendEh': sendEh
   }
 
