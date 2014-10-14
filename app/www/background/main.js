@@ -37,7 +37,16 @@ function onIncomingEh(from_userid) {
     message: userlist[from_userid].name + ' x' + userlist[from_userid].inboundEhCount
   });
 
-  play("/assets/sounds/ASDIC.wav"); // TODO: replace this
+  var sounds = [
+    "/assets/sounds/computer.wav",
+    "/assets/sounds/funylook.wav",
+    "/assets/sounds/jock.wav",
+    "/assets/sounds/loonybin.wav",
+    "/assets/sounds/loonybin2.wav",
+    "/assets/sounds/takeoff3.wav",
+    "/assets/sounds/whiplash.wav",
+  ];
+  play(sounds[Math.floor(Math.random() * sounds.length)]); // TODO: replace this
 
   updateUIs();
 }
