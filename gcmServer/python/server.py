@@ -71,51 +71,52 @@ def message_callback(session, message):
 
 ################################################################################
 
+def sendUpdatedListOfClientsTo(regid):
+  send_queue.append({
+    'to': regid,
+    'message_id': random_id(),
+    'data': {
+      'type': 'userListChangeEh',
+      'users': filter(lambda (r,n): r != regid, connected_users.items())
+    }
+  })
+
+def handlePingMessage(msg, payload):
+  # Reply with same message
+  sendMessage(msg['from'], { 'type': 'pong', 'message': payload['message'] })
+
+def identifySelfEh(msg, payload):
+  # TODO: how to prune users? (Perhaps after they fail to ack a message?)
+  regid = msg["from"]
+  name = payload["name"]
+
+  # if this user is already in the list, just remind them of the userlist
+  if connected_users.has_key(regid) and connected_users[regid] == name:
+    return sendUpdatedListOfClientsTo(regid)
+
+  # if this user is not in the list, or has changed names, update everyones userlist
+  connected_users[regid] = name
+  for regid, _ in connected_users.iteritems():
+    sendUpdatedListOfClientsTo(regid)
+
+def remindMeAgainEh(msg, payload):
+  sendUpdatedListOfClientsTo(msg["from"])
+
+def sendEh(msg, payload):
+  send_queue.append({
+    'to': payload['to_userid'],
+    'message_id': random_id(),
+    'data': {
+      'type': 'incomingEh',
+      'from_userid': msg['from']
+    }
+  })
+
+################################################################################
+
 def handleMessageInApplicationSpecificManner(msg):
   payload = msg['data']
   # payload['type'] is not a requirement, its just a convention I chose to use
-
-  def handlePingMessage(msg, payload):
-    # Reply with same message
-    sendMessage(msg['from'], { 'type': 'pong', 'message': payload['message'] })
-
-  def identifySelfEh(msg, payload):
-    # TODO: how to prune users? (Perhaps after they fail to ack a message?)
-    regid = msg["from"]
-    name = payload["name"]
-
-    # if this user is already in the list, just remind them of the userlist
-    if connected_users.has_key(regid) and connected_users[regid] == name:
-      return sendUpdatedListOfClientsTo(regid)
-
-    # if this user is not in the list, or has changed names, update everyones userlist
-    connected_users[regid] = name
-    for regid, _ in connected_users.iteritems():
-      sendUpdatedListOfClientsTo(regid)
-
-  def sendUpdatedListOfClientsTo(regid):
-      send_queue.append({
-        'to': regid,
-        'message_id': random_id(),
-        'data': {
-          'type': 'userListChangeEh',
-          'users': filter(lambda (r,n): r != regid, connected_users.items())
-        }
-      })
-
-  def remindMeAgainEh(msg, payload):
-    sendUpdatedListOfClientsTo(msg["from"])
-
-  def sendEh(msg, payload):
-    send_queue.append({
-      'to': payload['to_userid'],
-      'message_id': random_id(),
-      'data': {
-        'type': 'incomingEh',
-        'from_userid': msg['from']
-      }
-    })
-
 
   handlers = {
     'ping': handlePingMessage,
