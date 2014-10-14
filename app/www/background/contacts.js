@@ -9,7 +9,7 @@ var userlist = {};
 function pruneUsersNotInList(userids) {
   Object.keys(userlist).forEach(function(userid) {
     if (userids.indexOf(userid) == -1) {
-      delete userids[userid];
+      delete userlist[userid];
     }
   });
 }
