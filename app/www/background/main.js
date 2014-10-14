@@ -11,6 +11,7 @@ function identifySelfEh(displayName, callback) {
     'type': 'identifySelfEh',
     'name': displayName
   });
+  updateUIs();
 }
 
 function onUserListChangeEh(userlist) {
