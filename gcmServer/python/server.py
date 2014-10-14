@@ -81,7 +81,15 @@ def handleMessageInApplicationSpecificManner(msg):
 
   def identifySelfEh(msg, payload):
     # TODO: how to prune users? (Perhaps after they fail to ack a message?)
-    connected_users[msg["from"]] = payload["name"]
+    regid = msg["from"]
+    name = payload["name"]
+
+    # if this user is already in the list, just remind them of the userlist
+    if connected_users.has_key(regid) and connected_users[regid] == name:
+      return sendUpdatedListOfClientsTo(regid)
+
+    # if this user is not in the list, or has changed names, update everyones userlist
+    connected_users[regid] = name
     for regid, _ in connected_users.iteritems():
       sendUpdatedListOfClientsTo(regid)
 
@@ -124,7 +132,7 @@ def handleMessageInApplicationSpecificManner(msg):
   handler = handlers[payload['type']]
   try:
     handler(msg, payload)
-  except e:
+  except Exception as e:
     print "Handler of type " + payload['type'] + " had a meltdown:"
     print e
 
