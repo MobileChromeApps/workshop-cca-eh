@@ -19,6 +19,12 @@ function onUserListChangeEh(userlist) {
   updateUIs();
 }
 
+function remindMeAgainEh(callback) {
+  sendGcmMessage({
+    'type': 'remindMeAgainEh'
+  });
+}
+
 function onIncomingEh(from_userid) {
   console.log('received Eh from', from_userid);
 
