@@ -1,0 +1,28 @@
+#!/bin/bash
+
+set -eu
+cd "$(dirname "$0")"
+
+RUN_BOWER=0
+while [[ "$#" != 0 ]]; do
+  case "$1" in
+    --bower)
+      RUN_BOWER=1 ;;
+    *) echo "unknown option: $1"; exit 1 ;;
+  esac
+  shift
+done
+
+# updates (mostly) polymer components
+if [ ! -d "bower_components" ] || [ "${RUN_BOWER}" == "1" ]; then
+  bower update
+elif [ "${RUN_BOWER}" == "0" ]; then
+  echo "bower_components exists, ignoring (use --bower to force)"
+fi
+
+# merge html/js/* together
+vulcanize --csp --strip -o foreground/vulcanized.html foreground/index.html
+
+# success!
+echo "Ok!"
+
