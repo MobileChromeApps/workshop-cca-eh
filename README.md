@@ -1,5 +1,5 @@
-wat-pddays-cca-eh
-=================
+workshop-cca-eh
+===============
 
 ### Intro
 
@@ -14,12 +14,40 @@ wat-pddays-cca-eh
 
 ### Setup
 
-* Getting Hello World up and running
-  * On Android, install [Custom build of CADT](https://github.com/mmocny/wat-pddays-cca-eh/releases/download/CADT/ChromeAppDeveloperTool-debug-unaligned.apk)
-  * On Laptop, `npm install -g cca` or [Install Chrome Dev Editor](https://chrome.google.com/webstore/detail/chrome-dev-editor-develop/pnoffddplpippgcfjdhbmhkofpnaalpg?hl=en)
-  * `git clone https://github.com/mmocny/wat-pddays-cca-eh.git`
-  * Run, then try Chrome remote inspector
-  * Bonus: Help others!
+This repository contains the final version of the Eh app.
+
+[//]: # (TODO(samthor): there should be the intermediate steps later)
+
+#### Prerequisites
+
+* Clone this repository:
+
+        git clone https://github.com/MobileChromeApps/workshop-cca-eh.git
+
+* [NodeJS](http://nodejs.org)
+  * [Bower](http://bower.io)
+  * [Vulcanize](https://www.npmjs.org/package/vulcanize)
+
+    Additionally, you'll either need [cca](https://www.npmjs.org/package/cca) or the [Chrome Dev Editor](https://chrome.google.com/webstore/detail/chrome-dev-editor-develop/pnoffddplpippgcfjdhbmhkofpnaalpg?hl=en).
+
+* Run `app/www/prepare.sh`, which fetches dependenices (with Bower) and [vulcanizes](https://www.polymer-project.org/articles/concatenating-web-components.html) the code. You'll need to run this whenever you change the project.
+  * You can force dependencies to update with `--bower`.
+
+#### Desktop
+
+Inside Chrome, head to [Extensions](chrome://extensions) and load an unpacked extension while in Developer mode. Point to `app/www` inside the repository.
+
+* If you haven't run `prepare.sh`, then the app will fail to load.
+
+[//]: # (TODO(samthor): Polymer fails with CSP errors if index.html is loaded directly)
+
+#### Android
+
+* On Android, install [Custom build of CADT](https://github.com/mmocny/wat-pddays-cca-eh/releases/download/CADT/ChromeAppDeveloperTool-debug-unaligned.apk)
+
+[//]: # (TODO(samthor): Need to create a Cordova app folder)
+
+* `cca run android --device`
 
 ### Lets Get Started, Eh!
 
