@@ -1,7 +1,10 @@
-workshop-cca-eh
-===============
+## workshop-cca-eh
 
-### Intro
+Eh is a real-world messaging application, built with [Chrome Apps for Mobile](https://developer.chrome.com/apps/chrome_apps_on_mobile), that brings out the inner Canadian in all of us.
+
+This repository contains the final version of Eh, plus a workshop to build it on your own. It incorporates [Polymer](https://www.polymer-project.org/) and [Material Design](https://www.google.com/design/spec) elements.
+
+### Background
 
 * What are [chrome apps](https://developer.chrome.com/apps/about_apps)?  [for mobile](https://developer.chrome.com/apps/chrome_apps_on_mobile)? Why?
 
@@ -14,102 +17,76 @@ workshop-cca-eh
 
 ### Setup
 
-This repository contains the final version of the Eh app.
-
-[//]: # (TODO(samthor): there should be the intermediate steps later)
-
-#### Prerequisites
+First, configure your development environment and run the final version of Eh.
+You should be able to target Desktop, but also Android or iOS if you have a nearby device handy.
 
 * Clone this repository:
 
-        git clone https://github.com/MobileChromeApps/workshop-cca-eh.git
+      git clone https://github.com/MobileChromeApps/workshop-cca-eh.git
 
-* [NodeJS](http://nodejs.org)
+* Install the [Chrome Dev Editor](https://chrome.google.com/webstore/detail/chrome-dev-editor-develop/pnoffddplpippgcfjdhbmhkofpnaalpg?hl=en) (CDE, recommended)
+
+#### Advanced
+
+If you want to update Eh's custom elements and Polymer dependencies, or use the [`cca`](https://www.npmjs.org/package/cca) utility to run Eh, you will need to install:
+
+* [Node.js](http://nodejs.org) version 0.10.0 (or higher) with `npm`
   * [Bower](http://bower.io)
   * [Vulcanize](https://www.npmjs.org/package/vulcanize)
+  * JDK 1.7 or higher (for `cca` only)
 
-    Additionally, you'll either need [cca](https://www.npmjs.org/package/cca) or the [Chrome Dev Editor](https://chrome.google.com/webstore/detail/chrome-dev-editor-develop/pnoffddplpippgcfjdhbmhkofpnaalpg?hl=en).
+You can also follow [Install Your Development Tools](https://developer.chrome.com/apps/chrome_apps_on_mobile#step-1-install-your-development-tools).
 
-* Run `app/www/prepare.sh`, which fetches dependenices (with Bower) and [vulcanizes](https://www.polymer-project.org/articles/concatenating-web-components.html) the code. You'll need to run this whenever you change the project.
-  * You can force dependencies to update with `--bower`.
+To update Eh's dependencies, you can then run `common/prepare.sh`.
+This uses Bower to fetch Eh's dependencies (out of scope of this workshop), including Polymer, before running `vulcanize`.
+
+* This is required as [Content Security Policy](https://developer.chrome.com/extensions/contentSecurityPolicy) disallows inline scripts inside Chrome Apps, an important part of Polymer.
+
+Note that Eh uses an already configured [GCM](https://developer.android.com/google/gcm/index.html) endpoint to talk between clients.
+This is not part of the workshop but will remain up for your Eh extension apps.
 
 #### Desktop
 
+To load Eh without CDE or `cca`, you can load its path directly.
 Inside Chrome, head to [Extensions](chrome://extensions) and load an unpacked extension while in Developer mode. Point to `app/www` inside the repository.
 
-* If you haven't run `prepare.sh`, then the app will fail to load.
+You can also use the Chrome Dev Editor to perform this step.
 
-[//]: # (TODO(samthor): Polymer fails with CSP errors if index.html is loaded directly)
+* Load CDE via the [Apps](chrome://apps) page
+* Select `Open Folder...`, and choose `app/www` inside the repository
+* Right-click on `www`, and hit Run
 
-#### Android
+Finally, if you prefer the command-line, you can use `cca`. You first need to make a project that links to the www path.
 
-* On Android, install [Custom build of CADT](https://github.com/mmocny/wat-pddays-cca-eh/releases/download/CADT/ChromeAppDeveloperTool-debug-unaligned.apk)
+* From the top level of the repository, run:
 
-[//]: # (TODO(samthor): Need to create a Cordova app folder)
+      cca create ehApp --link-to=app/www
 
-* `cca run android --device`
+* From within `ehApp`, you can type `cca run chrome`.
+
+#### Mobile
+
+You must use CDE or `cca` to deploy Eh to mobile.
+
+* To use CDE on Android, install [Custom build of CADT](https://github.com/mmocny/wat-pddays-cca-eh/releases/download/CADT/ChromeAppDeveloperTool-debug-unaligned.apk)
+
+[//]: # (TODO(samthor): describe using host app)
+
+* The `cca` utility may be used instead. Firstly, run:
+
+      `cca checkenv`
+
+  This will report which mobile environments are available.
+  To run and install on a connected Android device, ensure it is enabled for debugging and then run -- from within `ehApp`:
+
+      `cca run android --device`
 
 ### Lets Get Started, Eh!
 
-* Stub Out API and start building prototype UX
+Now that you have the development environment - and you can run Eh on desktop or mobile to Eh anyone online - the following workshop will walk through each step to build it from scratch.
 
-```
-identifySelfEh(displayName, callback)
-onUserListChangeEh(userlist)
-onIncomingEh(from_userid)
-sendEh(userid, callback)
-```
+_**Continue to [Step 1: Getting started &raquo;](https://github.com/MobileChromeApps/workshop-cca-eh/blob/master/docs/step1.md)**_
 
-  * Bonus: promises instead of callbacks
-  * Bonus: UI with Polymer
+If you'd just like to take the finished Eh product and add some extension tasks, you can skip right to the end.
 
-* Add Local Notifications using [chrome.notifications](https://developer.chrome.com/apps/notifications)
-  * Bonus: [Add HTML5 Audio](http://stackoverflow.com/questions/25384476/is-it-possible-to-make-chrome-app-notifications-make-a-sound)
-  * Bonus: Experiment with [chrome.alarms](https://developer.chrome.com/apps/alarms) firing delayed local notifications while app is in background
-
-* Use [chrome.gcm](https://developer.chrome.com/apps/gcm) to implement in this order:
-  * Implement `identifySelfEh`
-
-```
-// Outgoing gcm msg with 'data' value of:
-{
-  'type': 'identifySelfEh',
-  'name': your_chosen_display_name
-}
-```
-
-  * Implement `onUserListChangeEh`
-
-```
-// Incoming gcm msg with 'data' value of:
-{
-  'type': 'userListChangeEh',
-  'users': '[[userid1, username1], [userid2, username2], ...]' // NOTICE string type, must pass through JSON.parse
-}
-```
-
-  * Implement `onIncomingEh`
-
-```
-// Incoming gcm msg with 'data' value of:
-{
-  'type': 'incomingEh',
-  'from_userid': source_userid
-}
-```
-
-  * Implement `sendEh`
-
-```
-// Outgoing gcm msg with 'data' value of:
-{
-  'type': 'sendEh',
-  'to_userid': target_userid
-}
-```
-
-* You can debug GCM with the help of a "test" message.  Just call `sendGcmMessage({'test':'test'})` and you should receive a reply.
-
-### Now Make it Shine!
-
-* Please submit Pull Requests to fix any issues with this repo
+_**Continue to [Extensions &raquo;](https://github.com/MobileChromeApps/workshop-cca-eh/blob/master/docs/extensions.md)**_
