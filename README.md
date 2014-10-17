@@ -22,49 +22,44 @@ You should be able to target Desktop, but also Android or iOS if you have a near
 
 * Clone this repository:
 
-      git clone https://github.com/MobileChromeApps/workshop-cca-eh.git
+        git clone https://github.com/MobileChromeApps/workshop-cca-eh.git
 
 * Install the [Chrome Dev Editor](https://chrome.google.com/webstore/detail/chrome-dev-editor-develop/pnoffddplpippgcfjdhbmhkofpnaalpg?hl=en) (CDE, recommended)
 
 #### Advanced
 
-If you want to update Eh's custom elements and Polymer dependencies, or use the [`cca`](https://www.npmjs.org/package/cca) utility to run Eh, you will need to install:
+If you want to update Eh's custom elements and Polymer dependencies, or use the [`cca`](https://www.npmjs.org/package/cca) utility to run Eh, you will need to install (see [Install Your Development Tools](https://developer.chrome.com/apps/chrome_apps_on_mobile#step-1-install-your-development-tools)):
 
 * [Node.js](http://nodejs.org) version 0.10.0 (or higher) with `npm`
   * [Bower](http://bower.io)
   * [Vulcanize](https://www.npmjs.org/package/vulcanize)
   * JDK 1.7 or higher (for `cca` only)
 
-You can also follow [Install Your Development Tools](https://developer.chrome.com/apps/chrome_apps_on_mobile#step-1-install-your-development-tools).
-
 To update Eh's dependencies, you can then run `common/prepare.sh`.
-This uses Bower to fetch Eh's dependencies (out of scope of this workshop), including Polymer, before running `vulcanize`.
+This uses Bower to update Eh's dependencies, including Polymer, and runs a vulcanize step
 
 * This is required as [Content Security Policy](https://developer.chrome.com/extensions/contentSecurityPolicy) disallows inline scripts inside Chrome Apps, an important part of Polymer.
 
 Note that Eh uses an already configured [GCM](https://developer.android.com/google/gcm/index.html) endpoint to talk between clients.
 This is not part of the workshop but will remain up for your Eh extension apps.
 
-#### Desktop
+#### Deploy to desktop
 
-To load Eh without CDE or `cca`, you can load its path directly.
-Inside Chrome, head to [Extensions](chrome://extensions) and load an unpacked extension while in Developer mode. Point to `app/www` inside the repository.
-
-You can also use the Chrome Dev Editor to perform this step.
+You can use the Chrome Dev Editor to perform this step.
 
 * Load CDE via the [Apps](chrome://apps) page
 * Select `Open Folder...`, and choose `app/www` inside the repository
 * Right-click on `www`, and hit Run
 
-Finally, if you prefer the command-line, you can use `cca`. You first need to make a project that links to the www path.
+If you prefer the command-line, you can use `cca`. You first need to make a project that links to the www path.
 
 * From the top level of the repository, run:
 
-      cca create ehApp --link-to=app/www
+        cca create ehApp --link-to=app/www
 
 * From within `ehApp`, you can type `cca run chrome`.
 
-#### Mobile
+#### Deploy to mobile
 
 You must use CDE or `cca` to deploy Eh to mobile.
 
@@ -74,16 +69,16 @@ You must use CDE or `cca` to deploy Eh to mobile.
 
 * The `cca` utility may be used instead. Firstly, run:
 
-      `cca checkenv`
+        cca checkenv
 
   This will report which mobile environments are available.
-  To run and install on a connected Android device, ensure it is enabled for debugging and then run -- from within `ehApp`:
+  To run and install on a connected Android device, first ensure it is enabled for debugging, and then from within `ehApp` run:
 
-      `cca run android --device`
+        cca run android --device
 
 ### Lets Get Started, Eh!
 
-Now that you have the development environment - and you can run Eh on desktop or mobile to Eh anyone online - the following workshop will walk through each step to build it from scratch.
+Now that you have the development environment - and you can run the final Eh on desktop or mobile, to Eh anyone online - the following workshop will walk through each step to build it from scratch.
 
 _**Continue to [Step 1: Getting started &raquo;](https://github.com/MobileChromeApps/workshop-cca-eh/blob/master/docs/step1.md)**_
 

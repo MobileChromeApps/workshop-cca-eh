@@ -29,7 +29,7 @@ You can also use `android` or `ios` (with optional `--device`, to use a physical
 
 ### Symlink assets
 
-Once the project is created (either with CDE or `cca`), you should symlink in the common resources for Eh -- the symlink should be created as a peer of `manifest.json`.
+Once the project is created (either with CDE or `cca`), you should symlink in the common resources for Eh - the symlink should be created as a peer of `manifest.json`.
 
 For CDE, this will look like:
 
@@ -57,17 +57,19 @@ Open `index.html`, and update the `<head>` to look like this-
     </head>
 
 And update `<body>` with our default Polymer elements and `eh-contact-list`:
-  
-    <core-header-panel>
-      <core-toolbar>
-        <core-icon-button icon="menu" on-tap="{{menuAction}}"></core-icon-button>
-        <h3 flex>Eh</h3>
-        <core-icon-button icon="more-vert" on-tap="{{moreAction}}"></core-icon-button>
-      </core-toolbar>
 
-      <eh-contact-list id="contacts"></eh-contact-list>
+    <body unresolved>
+      <core-header-panel>
+        <core-toolbar>
+          <core-icon-button icon="menu" on-tap="{{menuAction}}"></core-icon-button>
+          <h3 flex>Eh</h3>
+          <core-icon-button icon="more-vert" on-tap="{{moreAction}}"></core-icon-button>
+        </core-toolbar>
 
-    </core-header-panel>
+        <eh-contact-list id="contacts"></eh-contact-list>
+
+      </core-header-panel>
+    </body>
 
 #### JS
 
@@ -107,12 +109,12 @@ Finally, the page needs a coat of paint. In fact, it won't display at all withou
 
 If you run your app again, you should see something like this-
 
-![Preview](https://github.com/MobileChromeApps/workshop-cca-eh/blob/master/docs/assets/begin-preview.png)
+![Preview](https://github.com/MobileChromeApps/workshop-cca-eh/raw/master/docs/assets/step1-preview.png)
 
 Congratulations!
 
 ### Next up
 
-The code for this step is in (https://github.com/MobileChromeApps/workshop-cca-eh/blob/master/workshop/begin).
+The code for this step is in [begin](https://github.com/MobileChromeApps/workshop-cca-eh/blob/master/workshop/begin).
 
 _**Continue to [Step 2: Google Cloud Messaging &raquo;](https://github.com/MobileChromeApps/workshop-cca-eh/blob/master/docs/step2.md)**_
