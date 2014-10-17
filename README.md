@@ -36,7 +36,7 @@ If you want to update Eh's custom elements and Polymer dependencies, or use the 
   * JDK 1.7 or higher (for `cca` only)
 
 To update Eh's dependencies, you can then run `common/prepare.sh`.
-This uses Bower to update Eh's dependencies, including Polymer, and runs a vulcanize step
+This uses Bower to update Eh's dependencies, including Polymer, and runs a vulcanize step.
 
 * This is required as [Content Security Policy](https://developer.chrome.com/extensions/contentSecurityPolicy) disallows inline scripts inside Chrome Apps, an important part of Polymer.
 
