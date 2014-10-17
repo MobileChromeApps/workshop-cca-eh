@@ -20,8 +20,8 @@ elif [ "${RUN_BOWER}" == "0" ]; then
   echo "bower_components exists, ignoring (use --bower to force)"
 fi
 
-# merge html/js/* together
-vulcanize --csp --strip -o foreground/vulcanized.html foreground/index.html
+# merge deps html/js/* together
+vulcanize --csp --strip -o foreground/vulcanized.html foreground/deps.html
 
 # success!
 echo "Ok!"

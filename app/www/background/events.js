@@ -6,7 +6,7 @@ chrome.app.runtime.onLaunched.addListener(function() {
   var opts = {
     id: 'eh'
   };
-  chrome.app.window.create('/foreground/vulcanized.html', opts, function(win) {
+  chrome.app.window.create('/foreground/index.html', opts, function(win) {
   });
 });
 

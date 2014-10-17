@@ -6,10 +6,12 @@
 
     <script src="../bower_components/platform/platform.js"></script>
 
-    <link rel="import" href="../bower_components/core-header-panel/core-header-panel.html">
-    <link rel="import" href="../bower_components/core-toolbar/core-toolbar.html">
-    <link rel="import" href="../bower_components/core-icon-button/core-icon-button.html">
-    <link rel="import" href="../foreground/eh-contact-list.html">
+    <!--
+      Import vulcanized deps.html, as Polymer otherwise breaks CSP contract by
+      by including inline script tags.
+        https://developer.chrome.com/extensions/contentSecurityPolicy
+    -->
+    <link rel="import" href="vulcanized.html">
 
     <script src="main.js"></script>
   </head>
