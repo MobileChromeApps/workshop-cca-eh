@@ -21,7 +21,7 @@ elif [ "${RUN_BOWER}" == "0" ]; then
 fi
 
 # merge deps html/js/* together
-vulcanize --csp --strip -o foreground/vulcanized.html foreground/deps.html
+vulcanize --csp --strip -o vulcanized.html deps.html
 
 # success!
 echo "Ok!"

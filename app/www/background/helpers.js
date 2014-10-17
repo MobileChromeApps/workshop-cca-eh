@@ -53,7 +53,7 @@ function handleIncomingGcmMessage(msg) {
 
 function createLocalNotification(notificationId, options, callback) {
   options = options || {};
-  options.iconUrl = options.iconUrl || '/assets/icons/icon128.png';
+  options.iconUrl = options.iconUrl || '/common/assets/icons/icon128.png';
   options.message = options.message || 'Eh';
   callback = callback || function() {}
   chrome.notifications.create(notificationId, options, callback);

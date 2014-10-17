@@ -38,13 +38,13 @@ function onIncomingEh(from_userid) {
   });
 
   var sounds = [
-    "/assets/sounds/computer.wav",
-    "/assets/sounds/funylook.wav",
-    "/assets/sounds/jock.wav",
-    "/assets/sounds/loonybin.wav",
-    "/assets/sounds/loonybin2.wav",
-    "/assets/sounds/takeoff3.wav",
-    "/assets/sounds/whiplash.wav",
+    "/common/assets/sounds/computer.wav",
+    "/common/assets/sounds/funylook.wav",
+    "/common/assets/sounds/jock.wav",
+    "/common/assets/sounds/loonybin.wav",
+    "/common/assets/sounds/loonybin2.wav",
+    "/common/assets/sounds/takeoff3.wav",
+    "/common/assets/sounds/whiplash.wav",
   ];
   play(sounds[Math.floor(Math.random() * sounds.length)]); // TODO: replace this
 

@@ -6,15 +6,15 @@
   "version": "1.3.1",
   "offline_enabled": true,
   "icons": {
-    "16": "assets/icons/icon16.png",
-    "36": "assets/icons/icon36.png",
-    "48": "assets/icons/icon48.png",
-    "57": "assets/icons/icon57.png",
-    "72": "assets/icons/icon72.png",
-    "96": "assets/icons/icon96.png",
-    "114": "assets/icons/icon114.png",
-    "128": "assets/icons/icon128.png",
-    "144": "assets/icons/icon144.png"
+    "16": "common/assets/icons/icon16.png",
+    "36": "common/assets/icons/icon36.png",
+    "48": "common/assets/icons/icon48.png",
+    "57": "common/assets/icons/icon57.png",
+    "72": "common/assets/icons/icon72.png",
+    "96": "common/assets/icons/icon96.png",
+    "114": "common/assets/icons/icon114.png",
+    "128": "common/assets/icons/icon128.png",
+    "144": "common/assets/icons/icon144.png"
   },
   "app": {
     "background": {
