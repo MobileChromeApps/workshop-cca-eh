@@ -124,6 +124,10 @@ Again, let's run this sample. If all goes well, your Chrome console should look 
 
 ![Preview](https://github.com/MobileChromeApps/workshop-cca-eh/raw/master/docs/assets/step2-console.png)
 
+If you run this on your Android device, you'll see an authorization prompt-
+
+![Auth](https://github.com/MobileChromeApps/workshop-cca-eh/raw/master/docs/assets/step2-auth.png)
+
 ### Next up
 
 The code for this step is in [step2](https://github.com/MobileChromeApps/workshop-cca-eh/blob/master/workshop/step2).
