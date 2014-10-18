@@ -74,7 +74,7 @@ You must use CDE or `cca` to deploy Eh to mobile.
   This will report which mobile environments are available.
   To run and install on a connected Android device, first ensure it is enabled for debugging, and then from within `ehApp` run:
 
-        cca run android --device
+      cca run android --device
 
 ### Lets Get Started, Eh!
 
