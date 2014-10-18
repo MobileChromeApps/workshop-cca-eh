@@ -13,6 +13,8 @@ The editor will create a basic Chrome app that can be run on desktop or on mobil
 
 * To preview the app on Android, right-click on your project's name (e.g. 'EhWorkApp') and tap `Deploy to Mobile...`.
 
+  * To use CDE, you'll need to have (CADT)[https://github.com/MobileChromeApps/workshop-cca-eh/blob/master/README.md#deploy-to-mobile] installed on your device.
+
 [//]: # (TODO(samthor): reference CADT from README.md)
 
 Alternatively, you can use `cca` on the command-line. Run:
