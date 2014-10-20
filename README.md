@@ -53,13 +53,13 @@ You can use the Chrome Dev Editor to perform this step.
 
 You can also deploy any individual step of this workshop in a similar fashion. If the project is already on the left of CDE, you can just take the last step.
 
-Alternatively, you can just add the folder as an 'unpacked extension' in [Extensions](chrome://extensions) with **Developer Mode** enabled.
+Alternatively, you can just add the folder as an 'unpacked extension' in Extensions (`chrome://extensions`) with **Developer Mode** enabled.
 
 #### Deploy to mobile
 
-You can also use the Chrome Dev Editor to deploy to mobile. However, you need to have [CADT](https://github.com/MobileChromeApps/chrome-app-developer-tool/#chrome-app-developer-tool-for-mobile-cadt) installed on your device as the "host" of your application.
+You can also use the Chrome Dev Editor to deploy to mobile. However, you need to have the [Chrome App Developer Tool](https://github.com/MobileChromeApps/chrome-app-developer-tool/#chrome-app-developer-tool-for-mobile-cadt) (CADT) installed on your device as the "host" of your application.
 
-* Load CDE via the [Apps](chrome://apps) page
+* Load CDE via the Apps (`chrome://apps`) page
 * Select `Open Folder...`, and choose `app/www` inside the repository
 * Right-click on `www`, and hit Deploy To Mobile
 
@@ -78,15 +78,15 @@ Finally, the `cca` can also be used to build a native APK or iOS binary.
 * Run `cca checkenv` to report which mobile environments are available
 * Create a Cordova application by linking your project - this creates a workspace to compile binaries
 
-      cca create ehApp --link-to=app/www
-      cca create ehStepApp2 --link-to=workshop/step2
-      # or link to any path containing manifest.json
+        cca create ehApp --link-to=app/www
+        cca create ehStepApp2 --link-to=workshop/step2
+        # or link to any path containing manifest.json
 
 * Step into the newly created app directory
 * Install and run on your native platform of choice with-
 
-      cca run android --device
-      cca run ios --device
+        cca run android --device
+        cca run ios --device
 
 ### Lets Get Started, Eh!
 

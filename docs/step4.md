@@ -14,7 +14,7 @@ Ok, now you have a contact list. If you tap on an online contact, you'll actuall
       updateUI();
     }
 
-Most of the above code is logging and calling the `updateUI`` method. Our custom Polymer element is configured to visualize when we are sending an Eh.
+Most of the above code is logging and calling the `updateUI` method. Our custom Polymer element is configured to visualize when we are sending an Eh.
 
 The `sendEhTo` method needs `sendEh` on the background page, let's add it inside `background.js`-
 
