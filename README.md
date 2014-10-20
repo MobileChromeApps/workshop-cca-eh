@@ -51,30 +51,42 @@ You can use the Chrome Dev Editor to perform this step.
 * Select `Open Folder...`, and choose `app/www` inside the repository
 * Right-click on `www`, and hit Run
 
-If you prefer the command-line, you can use `cca`. You first need to make a project that links to the www path.
+You can also deploy any individual step of this workshop in a similar fashion. If the project is already on the left of CDE, you can just take the last step.
 
-* From the top level of the repository, run:
-
-        cca create ehApp --link-to=app/www
-
-* From within `ehApp`, you can type `cca run chrome`.
+Alternatively, you can just add the folder as an 'unpacked extension' in [Extensions](chrome://extensions) with **Developer Mode** enabled.
 
 #### Deploy to mobile
 
-You must use CDE or `cca` to deploy Eh to mobile.
+You can also use the Chrome Dev Editor to deploy to mobile. However, you need to have [CADT](https://github.com/MobileChromeApps/chrome-app-developer-tool/#chrome-app-developer-tool-for-mobile-cadt) installed on your device as the "host" of your application.
 
-* To use CDE on Android, install [Custom build of CADT](https://github.com/mmocny/wat-pddays-cca-eh/releases/download/CADT/ChromeAppDeveloperTool-debug-unaligned.apk)
+* Load CDE via the [Apps](chrome://apps) page
+* Select `Open Folder...`, and choose `app/www` inside the repository
+* Right-click on `www`, and hit Deploy To Mobile
 
-[//]: # (TODO(samthor): describe using host app)
+As above, you can apply these steps to any step.
 
-* The `cca` utility may be used instead. Firstly, run:
+Alternatively, you can use the `cca` to push to CADT. Use a command-line to `cd` into your project's folder (containing `manifest.json`), and then run-
 
-        cca checkenv
+    cca push --watch
 
-  This will report which mobile environments are available.
-  To run and install on a connected Android device, first ensure it is enabled for debugging, and then from within `ehApp` run:
+This will watch the folder for changes and push to CADT. This is ideal for rapid development.
+
+##### Build binary
+
+Finally, the `cca` can also be used to build a native APK or iOS binary.
+
+* Run `cca checkenv` to report which mobile environments are available
+* Create a Cordova application by linking your project - this creates a workspace to compile binaries
+
+      cca create ehApp --link-to=app/www
+      cca create ehStepApp2 --link-to=workshop/step2
+      # or link to any path containing manifest.json
+
+* Step into the newly created app directory
+* Install and run on your native platform of choice with-
 
       cca run android --device
+      cca run ios --device
 
 ### Lets Get Started, Eh!
 
