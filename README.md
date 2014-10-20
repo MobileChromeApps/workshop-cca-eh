@@ -15,7 +15,7 @@ This repository contains the final version of Eh, plus a workshop to build it on
 
 * [cca](https://github.com/MobileChromeApps/mobile-chrome-apps) vs [cadt](https://github.com/MobileChromeApps/chrome-app-developer-tool)
 
-### Setup
+### Prerequisites
 
 First, configure your development environment and run the final version of Eh.
 You should be able to target Desktop, but also Android or iOS if you have a nearby device handy.
@@ -43,35 +43,29 @@ This uses Bower to update Eh's dependencies, including Polymer, and runs a vulca
 Note that Eh uses an already configured [GCM](https://developer.android.com/google/gcm/index.html) endpoint to talk between clients.
 This is not part of the workshop but will remain up for your Eh extension apps.
 
-#### Deploy to desktop
+### Deploy
 
-You can use the Chrome Dev Editor to perform this step.
-
-* Load CDE via the [Apps](chrome://apps) page
-* Select `Open Folder...`, and choose `app/www` inside the repository
-* Right-click on `www`, and hit Run
-
-You can also deploy any individual step of this workshop in a similar fashion. If the project is already on the left of CDE, you can just take the last step.
-
-Alternatively, you can just add the folder as an 'unpacked extension' in Extensions (`chrome://extensions`) with **Developer Mode** enabled.
-
-#### Deploy to mobile
-
-You can also use the Chrome Dev Editor to deploy to mobile. However, you need to have the [Chrome App Developer Tool](https://github.com/MobileChromeApps/chrome-app-developer-tool/#chrome-app-developer-tool-for-mobile-cadt) (CADT) installed on your device as the "host" of your application.
+If you're using the Chrome Dev Editor, you need to add the project you're working on to its environment.
 
 * Load CDE via the Apps (`chrome://apps`) page
 * Select `Open Folder...`, and choose `app/www` inside the repository
-* Right-click on `www`, and hit Deploy To Mobile
+  * You can point to e.g. `workshop/step3` to add an intermediate step
 
-As above, you can apply these steps to any step.
+From here, you can right-click on the project. Either select **Run** for desktop, or **Deploy To Mobile** for mobile.
 
-Alternatively, you can use the `cca` to push to CADT. Use a command-line to `cd` into your project's folder (containing `manifest.json`), and then run-
+#### Desktop-only
+
+You can just add the folder as an 'unpacked extension' in Extensions (`chrome://extensions`) with **Developer Mode** enabled. You don't need CDE for this.
+
+#### Rapid mobile
+
+You can use the `cca` command-line tool (see [Advanced](#Advanced)) to push to CADT. Step into your project's folder (containing `manifest.json`), and then run-
 
     cca push --watch
 
-This will watch the folder for changes and push to CADT. This is ideal for rapid development.
+This will watch the folder for changes. This is ideal for rapid development.
 
-##### Build binary
+#### Mobile binary
 
 Finally, the `cca` can also be used to build a native APK or iOS binary.
 
@@ -82,7 +76,7 @@ Finally, the `cca` can also be used to build a native APK or iOS binary.
         cca create ehStepApp2 --link-to=workshop/step2
         # or link to any path containing manifest.json
 
-* Step into the newly created app directory
+* Step into the newly created app folder
 * Install and run on your native platform of choice with-
 
         cca run android --device
