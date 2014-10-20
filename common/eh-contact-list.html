@@ -4,6 +4,12 @@
 <polymer-element name="eh-contact-list" attributes="contacts">
   <template>
     <style>
+      :host {
+        display: block;
+        position: relative;
+        padding: 5px;
+        width: 100%;
+      }
     </style>
 
     <template if="{{contacts.length == 0}}">
