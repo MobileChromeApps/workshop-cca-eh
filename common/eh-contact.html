@@ -4,6 +4,7 @@
   <template>
     <style>
     :host {
+      box-sizing: border-box;
       display: block;
       position: relative;
       background-color: white;
@@ -20,6 +21,9 @@
       font-size: 1.8rem;
       font-weight: 300;
     }
+    * {
+      box-sizing: border-box;
+    }
     </style>
 
     <div class="eh-contact-header" on-tap="{{onTap}}" layout horizontal center>
@@ -32,6 +36,8 @@
       <!--<content></content>-->
     </div>
   </template>
+
+<!-- ----------------------------- -->
 
   <script>
   Polymer({
