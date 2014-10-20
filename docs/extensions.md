@@ -4,9 +4,7 @@
 
 These extensions are already built-in to the 'final' version of Eh.
 
-* Audio
-
-* Notifications
+* Updated notifications &amp; audio
 
 ### Suggested
 
