@@ -11,7 +11,7 @@ This repository contains the final version of Eh, plus a workshop to build it on
   > Prove that web apps can be comparable to native apps, and that they deserve integration into the Play Store.
   > There's some truth in opinions against webview-based apps, but our goal is to showcase why they actually are the best approach in some cases.
 
-  * [API Docs](https://developer.chrome.com/apps/api_index), [API Status for Android](https://github.com/MobileChromeApps/mobile-chrome-apps/blob/master/docs/APIStatus.md)
+  * [API Docs](https://developer.chrome.com/apps/api_index), [API Status for Android](https://github.com/MobileChromeApps/mobile-chrome-apps/blob/master/docs/APIsAndLibraries.md)
 
 * [cca](https://github.com/MobileChromeApps/mobile-chrome-apps) vs [cadt](https://github.com/MobileChromeApps/chrome-app-developer-tool)
 
