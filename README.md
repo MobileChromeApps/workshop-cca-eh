@@ -88,7 +88,7 @@ Finally, the `cca` can also be used to build a native APK or iOS binary.
 
 Now that you have the development environment - and you can run the final Eh on desktop or mobile, to Eh anyone online - the following workshop will walk through each step to build it from scratch.
 
-_**Continue to [Step 1: Getting started &raquo;](https://github.com/MobileChromeApps/workshop-cca-eh/blob/master/docs/step1.md)**_
+_**Continue to [Step 0: Project setup &raquo;](https://github.com/MobileChromeApps/workshop-cca-eh/blob/master/docs/step0.md)**_
 
 If you'd just like to take the finished Eh product and add some extension tasks, you can skip right to the end.
 
