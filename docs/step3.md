@@ -69,6 +69,14 @@ Then open `main.js` and define the `updateUI()` method-
 
 This will pass an `Array` of users to the custom Polymer element that renders contacts.
 
+_You might also want to remove or comment out the test code that added some contacts. These will be quickly replaced with real contacts, but you don't want your users to be confused._
+
+    // var contacts = [
+    //    { name: "Loonie" },
+    //    { name: "Toonie" }
+    // ];
+    // document.getElementById('contacts').contacts = contacts;
+
 If you run now, you might see some peers - but only those who have already completed the next step or who are running the final version of Eh. There's one more step in our way.
 
 ### Who goes there, eh?

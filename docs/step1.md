@@ -1,43 +1,10 @@
 ## Step 1: Getting started
 
-### Create a new project
-
-Start the Chrome Dev Editor. If this is the first time using the editor, you may be prompted with some initial setup steps.
-
-Select `New Project...`, then enter 'EhWorkApp', select the type `JavaScript Chrome App`, and tap `Create`.
-_You don't need to select **(using Polymer paper elements)**, as this workshop contains common resources for Polymer already._
-
-The editor will create a basic Chrome app that can be run on desktop or on mobile. Alternatively, the code for this is in  [begin](https://github.com/MobileChromeApps/workshop-cca-eh/blob/master/workshop/begin), and you can use `Open Folder...` to select and start with it.
-
-#### Deploy
-
-Right-click on the project and either select **Run** for desktop, or **Deploy To Mobile** for mobile. _As per [README.md](https://github.com/MobileChromeApps/workshop-cca-eh/blob/master/README.md), you'll need [CADT](https://github.com/MobileChromeApps/workshop-cca-eh/blob/master/README.md#deploy-to-mobile) installed on your mobile device_.
-
-#### Advanced
-
-Alternatively, you can use the `cca` via command-line to create the initial project-
-
-    cca create EhWorkApp
-
-From within the new `EhWorkApp` folder, you can then run on your native platform of choice-
-
-    cca run chrome
-    cca run android --device
-    cca run ios --device
-
-Alternatively, you can actively push to the CADT host app from `EhWorkApp/www`-
-
-    cca push --watch
-
-Or finally, you can open the `EhWorkApp/www` folder in the Chrome Dev Editor and follow the instructions above to start.
-
 ### Symlink assets
 
-Let's start working on the project itself!
+Let's start working on the project itself! After the previous step is completed (either with CDE or the `cca`, or just duplicate the [begin](https://github.com/MobileChromeApps/workshop-cca-eh/blob/master/workshop/begin) step), you should symlink in the common resources for Eh - the symlink should be created as a peer of `manifest.json`.
 
-Once it's created (either with CDE or the `cca`), you should symlink in the common resources for Eh - the symlink should be created as a peer of `manifest.json`.
-
-For CDE, this will look like:
+For CDE and the sample code, this will look like:
 
     ln -s /path/to/workshop-cca-eh/common EhWorkApp/common
 
@@ -82,9 +49,14 @@ And update `<body>` with our default Polymer elements and `eh-contact-list`:
 Now that our app is Polymer-based, we need to listen for the `polymer-ready` event to get started. Replace the contents of `main.js`, our foreground script, with these lines-
 
     window.addEventListener('polymer-ready', function(e) {
+      var contacts = [
+        { name: "Loonie" },
+        { name: "Toonie" }
+      ];
+      document.getElementById('contacts').contacts = contacts;
     });
 
-We'll add more code in here later.
+We'll add more code in here later. But for now, this just creates a couple of test contacts.
 
 #### CSS
 
