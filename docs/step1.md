@@ -5,43 +5,47 @@
 Start the Chrome Dev Editor. If this is the first time using the editor, you may be prompted with some initial setup steps.
 
 Select `New Project...`, then enter 'EhWorkApp', select the type `JavaScript Chrome App`, and tap `Create`.
-_You don't need to select `(using Polymer paper elements)`, as this workshop contains common resources for these depedencies._
+_You don't need to select **(using Polymer paper elements)**, as this workshop contains common resources for Polymer already._
 
-The editor will create a basic Chrome app that can be run on desktop or on mobile.
+The editor will create a basic Chrome app that can be run on desktop or on mobile. Alternatively, the code for this is in  [begin](https://github.com/MobileChromeApps/workshop-cca-eh/blob/master/workshop/begin), and you can use `Open Folder...` to select and start with it.
 
-* At any point, press the play button in the top-left of the editor to preview in Chrome.
+#### Deploy
 
-* To preview the app on Android, right-click on your project's name (e.g. 'EhWorkApp') and tap `Deploy to Mobile...`.
+Right-click on the project and either select **Run** for desktop, or **Deploy To Mobile** for mobile. _As per [README.md](https://github.com/MobileChromeApps/workshop-cca-eh/blob/master/README.md), you'll need [CADT](https://github.com/MobileChromeApps/workshop-cca-eh/blob/master/README.md#deploy-to-mobile) installed on your mobile device_.
 
-  * To use CDE, you'll need to have [CADT](https://github.com/MobileChromeApps/workshop-cca-eh/blob/master/README.md#deploy-to-mobile) installed on your device.
+#### Advanced
 
-[//]: # (TODO(samthor): reference CADT from README.md)
-
-Alternatively, you can use `cca` on the command-line. Run:
+Alternatively, you can use the `cca` via command-line to create the initial project-
 
     cca create EhWorkApp
 
-From within the new `EhWorkApp` folder, you can then run either:
+From within the new `EhWorkApp` folder, you can then run on your native platform of choice-
 
     cca run chrome
+    cca run android --device
+    cca run ios --device
 
-You can also use `android` or `ios` (with optional `--device`, to use a physically connected device) in place of `chrome`, to run on mobile, such as:
+Alternatively, you can actively push to the CADT host app from `EhWorkApp/www`-
 
-    cca run --device android
+    cca push --watch
+
+Or finally, you can open the `EhWorkApp/www` folder in the Chrome Dev Editor and follow the instructions above to start.
 
 ### Symlink assets
 
-Once the project is created (either with CDE or `cca`), you should symlink in the common resources for Eh - the symlink should be created as a peer of `manifest.json`.
+Let's start working on the project itself!
+
+Once it's created (either with CDE or the `cca`), you should symlink in the common resources for Eh - the symlink should be created as a peer of `manifest.json`.
 
 For CDE, this will look like:
 
     ln -s /path/to/workshop-cca-eh/common EhWorkApp/common
 
-And for the `cca`, this will look like:
+And if you created your project with the `cca`, this will look like:
 
     ln -s /path/to/workshop-cca-eh/common EhWorkApp/www/common
 
-If you'd like to regenerate these resources (advanced, via Bower) then see [README.md](https://github.com/MobileChromeApps/workshop-cca-eh/blob/master/README.md).
+If you'd like to regenerate these resources (advanced, via Bower) then see [README.md](https://github.com/MobileChromeApps/workshop-cca-eh/blob/master/README.md#Advanced).
 
 ### Polymer scaffolding
 
@@ -117,6 +121,6 @@ Congratulations!
 
 ### Next up
 
-The code for this step is in [begin](https://github.com/MobileChromeApps/workshop-cca-eh/blob/master/workshop/begin).
+The code for this step is in [step1](https://github.com/MobileChromeApps/workshop-cca-eh/blob/master/workshop/step1).
 
 _**Continue to [Step 2: Google Cloud Messaging &raquo;](https://github.com/MobileChromeApps/workshop-cca-eh/blob/master/docs/step2.md)**_
