@@ -7,7 +7,7 @@ Start the Chrome Dev Editor. If this is the first time using the editor, you may
 Select `New Project...`, then enter 'EhWorkApp', select the type `JavaScript Chrome App`, and tap `Create`.
 _You don't need to select **(using Polymer paper elements)**, as this workshop contains common resources for Polymer already._
 
-The editor will create a basic Chrome app that can be run on desktop or on mobile. Alternatively, the code for this is in  [begin](https://github.com/MobileChromeApps/workshop-cca-eh/blob/master/workshop/begin), and you can use `Open Folder...` to select and start with it.
+The editor will create a basic Chrome app that can be run on desktop or on mobile. Alternatively, the code for this is in [step0](https://github.com/MobileChromeApps/workshop-cca-eh/blob/master/workshop/step0), and you can use `Open Folder...` to select and start with it.
 
 ### Deploy
 
@@ -41,6 +41,6 @@ If you run the app now - either on desktop or mobile - you should see a "Hello W
 
 ### Next up
 
-The code for this step is in [begin](https://github.com/MobileChromeApps/workshop-cca-eh/blob/master/workshop/begin).
+The code for this step is in [step0](https://github.com/MobileChromeApps/workshop-cca-eh/blob/master/workshop/step0).
 
 _**Continue to [Step 1: Getting started &raquo;](https://github.com/MobileChromeApps/workshop-cca-eh/blob/master/docs/step1.md)**_

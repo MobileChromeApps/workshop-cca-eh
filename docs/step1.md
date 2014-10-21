@@ -2,7 +2,7 @@
 
 ### Symlink assets
 
-Let's start working on the project itself! After the previous step is completed (either with CDE or the `cca`, or just duplicate the [begin](https://github.com/MobileChromeApps/workshop-cca-eh/blob/master/workshop/begin) step), you should symlink in the common resources for Eh - the symlink should be created as a peer of `manifest.json`.
+Let's start working on the project itself! After the previous step is completed (either with CDE or the `cca`, or just duplicate the [step0](https://github.com/MobileChromeApps/workshop-cca-eh/blob/master/workshop/step0) step), you should symlink in the common resources for Eh - the symlink should be created as a peer of `manifest.json`.
 
 For CDE and the sample code, this will look like:
 
