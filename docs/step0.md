@@ -43,4 +43,4 @@ If you run the app now - either on desktop or mobile - you should see a "Hello W
 
 The code for this step is in [begin](https://github.com/MobileChromeApps/workshop-cca-eh/blob/master/workshop/begin).
 
-_**Continue to [Step 1: Getting started &raquo;](https://github.com/MobileChromeApps/workshop-cca-eh/blob/master/docs/step2.md)**_
+_**Continue to [Step 1: Getting started &raquo;](https://github.com/MobileChromeApps/workshop-cca-eh/blob/master/docs/step1.md)**_
