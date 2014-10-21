@@ -4,10 +4,15 @@
 
 These extensions are already built-in to the 'final' version of Eh.
 
-* Updated notifications &amp; audio
+* Audio
+
+* Eh Icons
 
 ### Suggested
 
+* Offline Userlist
+
+* Polymer style updates
+
 * Chur, G'day and Bro
 
-TODO.
