@@ -2,7 +2,7 @@
 
 Eh is a real-world messaging application, built with [Chrome Apps for Mobile](https://developer.chrome.com/apps/chrome_apps_on_mobile), that brings out the inner Canadian in all of us.
 
-This repository contains the final version of Eh, plus a workshop to build it on your own. It incorporates [Polymer](https://www.polymer-project.org/) and [Material Design](https://www.google.com/design/spec) elements.
+This repository contains the final version of Eh, plus a workshop to build it on your own. It incorporates a bit of [Polymer](https://www.polymer-project.org/) and [Material Design](https://www.google.com/design/spec) elements, but mostly focuses on Chrome Apps Api's and development workflow.
 
 ### Background
 
@@ -13,24 +13,48 @@ This repository contains the final version of Eh, plus a workshop to build it on
 
   * [API Docs](https://developer.chrome.com/apps/api_index), [API Status for Android](https://github.com/MobileChromeApps/mobile-chrome-apps/blob/master/docs/APIsAndLibraries.md)
 
-* [cca](https://github.com/MobileChromeApps/mobile-chrome-apps) vs [cadt](https://github.com/MobileChromeApps/chrome-app-developer-tool)
+* Two workflow choices:
+  * Command Line: [`cca`](https://github.com/MobileChromeApps/mobile-chrome-apps)
+  * IDE: [Chrome Dev Editor](https://github.com/dart-lang/chromedeveditor) (for your Desktop) plus [Chrome App Developer Tool](https://github.com/MobileChromeApps/chrome-app-developer-tool) (for your Android)
 
 ### Prerequisites
 
-First, configure your development environment and run the final version of Eh.
-You should be able to target Desktop, but also Android or iOS if you have a nearby device handy.
+Lets configure your development environment and run a sample app to make sure you can get started.
 
 * Clone this repository:
 
         git clone https://github.com/MobileChromeApps/workshop-cca-eh.git
 
-* Install the [Chrome Dev Editor](https://chrome.google.com/webstore/detail/chrome-dev-editor-develop/pnoffddplpippgcfjdhbmhkofpnaalpg?hl=en) (CDE, recommended)
+* Go get a USB Cable, and connect your Android to the Desktop.
+  * Make sure you have [Developer Options and USB Debugging enabled](http://developer.android.com/tools/device.html#developer-device-options).
 
-  * To use CDE with your mobile device, you'll need to install [CADT](https://github.com/MobileChromeApps/workshop-cca-eh/blob/master/README.md#deploy-to-mobile) as your 'host'
+> To access these settings, open the Developer options in the system Settings. On Android 4.2 and higher, the Developer options screen is hidden by default. To make it visible, go to *Settings > About phone* and tap *Build number* seven times. Return to the previous screen to find Developer options at the bottom.
 
-#### Advanced
+### Prerequisites for IDE workflow
 
-If you want to update Eh's custom elements and Polymer dependencies, or use the [`cca`](https://www.npmjs.org/package/cca) utility to run Eh, you will need to install (see [Install Your Development Tools](https://developer.chrome.com/apps/chrome_apps_on_mobile#step-1-install-your-development-tools)):
+* Install the [Chrome Dev Editor](https://chrome.google.com/webstore/detail/chrome-dev-editor-develop/pnoffddplpippgcfjdhbmhkofpnaalpg?hl=en) (CDE, recommended) on your Desktop.
+
+* Install the [Chrome App Developer Tool](https://github.com/MobileChromeApps/workshop-cca-eh/blob/master/README.md#deploy-to-mobile) (CADT) on your Android Device.
+
+* Run the Chrome Dev Editor (Find it in [chrome://apps](chrome://apps) or the chrome app launcher), and open the `app/www` folder from the repo you cloned earlier.
+  * Try to run locally with the "Play" button.
+  * Try to "Deploy to Mobile" over USB, which you can find in the menu.
+
+* If this works, you are good to go!
+
+#### Prerequisites for CLI workflow
+
+* Install the [`cca`](https://www.npmjs.org/package/cca).  Just follow [this guide](https://github.com/MobileChromeApps/mobile-chrome-apps/blob/master/docs/Installation.md).
+
+* Create a new project and import the the `app/www` folder from the repo you cloned earlier with `cca create EhApp --copy-from ../PATH_TO/app/www`.
+  * Try to run on device with `cd EhApp` and `cca run android --device`.
+  * On OSX you can also `cca run chrome` to preview the app locally.
+
+* If this works, you are good to go!
+
+#### Optional Prerequisites for hacking on UI
+
+If you want to update Eh's custom elements and Polymer dependencies,  utility to run Eh, you will need to install (see [Install Your Development Tools](https://developer.chrome.com/apps/chrome_apps_on_mobile#step-1-install-your-development-tools)):
 
 * [Node.js](http://nodejs.org) version 0.10.0 (or higher) with `npm`
   * [Bower](http://bower.io)
