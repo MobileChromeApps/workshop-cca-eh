@@ -13,6 +13,10 @@ The editor will create a basic Chrome app that can be run on desktop or on mobil
 
 Right-click on the project and either select **Run** for desktop, or **Deploy To Mobile** for mobile. _As per [README.md](https://github.com/MobileChromeApps/workshop-cca-eh/blob/master/README.md), you'll need [CADT](https://github.com/MobileChromeApps/workshop-cca-eh/blob/master/README.md#deploy-to-mobile) installed on your mobile device_.
 
+If you installed the `cca`, you can also drop to a command-line in the new folder, and use the tool to automatically push to CADT on changes-
+
+    cca push --watch
+
 ### Advanced
 
 Alternatively, you can use the `cca` via command-line to create the initial project-
