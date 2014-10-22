@@ -100,7 +100,7 @@ function onIncomingEh(from_userid) {
   var options = {
     type: 'basic',
     title: 'Eh',
-    iconUrl: '/common/assets/icons/icon128.png',
+    iconUrl: '/assets/icons/icon128.png',
     message: profile.name + ' x' + profile.inboundEhCount
   };
   chrome.notifications.create(from_userid, options, function() {});

@@ -66,7 +66,7 @@ If you want to update Eh's custom elements and Polymer dependencies, you will ne
 * [Bower](http://bower.io), and
 * [Vulcanize](https://www.npmjs.org/package/vulcanize)
 
-You can then run `common/prepare.sh` to update the custom elements used to build the app's UI.
+You can then run `ui/prepare.sh` to update the custom elements used to build the app's UI.
 
 > This is required because of the [Content Security Policy](https://developer.chrome.com/extensions/contentSecurityPolicy), which disallows inline scripts inside Chrome Apps, an important part of Polymer.
 
