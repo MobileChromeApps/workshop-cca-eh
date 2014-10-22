@@ -38,7 +38,7 @@ Usually you would also need to configure [GCM](https://developer.android.com/goo
 
 * Install the [Chrome App Developer Tool](https://github.com/MobileChromeApps/workshop-cca-eh/blob/master/README.md#deploy-to-mobile) (CADT) on your Android Device.
 
-* Run the Chrome Dev Editor (Find it in `chrome://apps` page or the chrome app launcher), and open the `app/www` folder from the repo you cloned earlier (using `Menu -> Open Folder...`).
+* Run the Chrome Dev Editor (Find it in `chrome://apps` page or the chrome app launcher), and open the `app/` folder from the repo you cloned earlier (using `Menu -> Open Folder...`).
   * Try to Run the app locally (using the Play button).
   * Try to Deploy to Mobile from CDE (using `Menu -> Deploy to Mobile...`).
     * Start CADT on your Android device first!
@@ -49,7 +49,7 @@ Usually you would also need to configure [GCM](https://developer.android.com/goo
 
 * Install the [`cca`](https://www.npmjs.org/package/cca) tool.  Just follow [this Installation guide](https://github.com/MobileChromeApps/mobile-chrome-apps/blob/master/docs/Installation.md).
 
-* Create a new project and import the `app/www` folder from this repo (which you should have cloned earlier), using `cca create EhApp --copy-from ../PATH_TO/app/www`.
+* Create a new project and import the `app/` folder from this repo (which you should have cloned earlier), using `cca create EhApp --copy-from ../PATH_TO/app/`.
   * Try to run on device with `cd EhApp` and `cca run android --device`.
   * On OSX you can also `cca run chrome` to preview the app locally.
 
@@ -71,6 +71,6 @@ You can then run `common/prepare.sh` to update the custom elements used to build
 
 ### Lets Get Started, Eh!
 
-Now that you have the development environment - and you can run the final Eh on desktop or mobile, to Eh anyone online - the following workshop will walk through each step to build it from scratch.
+Now that you have your development environment set up, you can start building the Eh app on desktop or mobile.  This workshop will walk through each step to build it from scratch.
 
-_**Continue to [Step 0: Project setup &raquo;](https://github.com/MobileChromeApps/workshop-cca-eh/blob/master/docs/step0.md)**_
+_**Continue to [Step 1: Getting Started &raquo;](https://github.com/MobileChromeApps/workshop-cca-eh/blob/master/docs/step1.md)**_
