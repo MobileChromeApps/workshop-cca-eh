@@ -68,7 +68,7 @@ And add a top-level `onIncomingEh` function, which does something sensible and s
 
 ### Permissions
 
-As the very last step, we actually have to enable the `notifications` permission inside `manifest.json`. Without this, you'll see a log but an error when we try to show a Desktop or mobile notification. Update the permissions section to look like this-
+As the very last step, we actually have to enable the `notifications` permission inside `manifest.json`. Without this, you'll see an error in the logs when we try to show a Desktop or mobile notification. Update the permissions section to look like this-
 
     "permissions": [
       "gcm",

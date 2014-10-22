@@ -75,7 +75,7 @@ The code therefore needs to be inside `main.js`, which is run by the foreground 
 Inside the `ready` listener, add a method call-
 
     window.addEventListener('polymer-ready', function(e) {
-      **attemptLogin();**
+      attemptLogin(); // add this line
       // ...
     });
 
