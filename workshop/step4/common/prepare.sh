@@ -28,6 +28,9 @@ for i in ../workshop/step*; do
   cp -r ../common $i/common
 done
 
+rm -rf ../app/www/common
+cp -r ../common ../app/www
+
 # success!
 echo "Ok!"
 
