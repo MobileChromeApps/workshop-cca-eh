@@ -4,15 +4,11 @@
 
 Let's connect to the provided Eh server using the GCM APIs. These are [standard for Chrome apps or extensions](https://developer.chrome.com/apps/cloudMessaging), and require signed-in Chrome users.
 
-First, the application manifest `manifest.json` needs to be updated with new permissions. Add a brand new permissions section in above `"app": {`-
+First, the application manifest (`manifest.json`) needs to be updated with new permissions:
 
     "permissions": [
-      "gcm",
-      "identity",
-      "<all_urls>"
+      "gcm"
     ],
-
-We'll use `identity` later, and we'll need to request Google's authentication URLs.
 
 At the bottom of `background.js`, add this boilerplate block-
 
@@ -50,6 +46,12 @@ _Also, you must be signed in via Chrome or yor mobile device for GCM to correctl
 ### Identity
 
 While not strictly part of GCM, let's use Google's [identity APIs](https://developer.chrome.com/apps/identity) to authenticate and get the signed-in user's name so they can be properly identified inside Eh.
+
+First, the application manifest `manifest.json` needs to be updated with new permissions:
+
+    "permissions": [
+      "identity"
+    ],
 
 #### Scopes
 

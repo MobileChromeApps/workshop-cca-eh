@@ -1,18 +1,27 @@
 {
   "manifest_version": 2,
-  "name": "step2",
-  "description": "Eh workshop #2",
-  "version": "0.0.1.0",
+
+  "name": "Eh",
+  "short_name": "Eh",
+  "description": "Eh workshop",
+
+  "version": "0.0.1",
 
   "icons": {
-    "16": "assets/icon_16.png",
-    "128": "assets/icon_128.png"
+    "16": "assets/icons/icon16.png",
+    "128": "assets/icons/icon128.png"
+  },
+
+  "app": {
+    "background": {
+      "scripts": ["background.js"]
+    }
   },
 
   "permissions": [
+    "<all_urls>",
     "gcm",
-    "identity",
-    "<all_urls>"
+    "identity"
   ],
 
   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAgz1mTPskjtGVirMpr858hRWdaZPpVkcxX6oCIYbOxkYW2GF4hW6Wc6zwasTl+l2yY61qTEEj9VIgrZLYIlFmDNJDpQ5KXeoPpOpfqflSI9GXRw6Eolj3puEVgU2dH5naAxJTHBudAdOLAxdkhiAElNaLxZ3VnccXc6GokuuKhCsTdjAi6dwuCxEteIgyb1H4t/FHe0v42FugZvEqg2xUVZRQHIlgKx1frVPtJdwTuGsuFKA97ItOYbZ7W9vO/tTKqtHqO6sS2BVFBzh0ElpjxFHuUtn5qggB/UMeNAgrvOfwTicpjXcJOU3mUgoVWhkiHPh8fW9tOBpCD8hPASdWXQIDAQAB",
@@ -24,11 +33,5 @@
       "https://www.googleapis.com/auth/gcm_for_chrome",
       "https://www.googleapis.com/auth/gcm_for_chrome.readonly"
     ]
-  },
-
-  "app": {
-    "background": {
-      "scripts": ["background.js"]
-    }
   }
 }
