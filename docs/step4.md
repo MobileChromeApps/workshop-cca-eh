@@ -8,13 +8,8 @@ Ok, now you have a contact list. If you tap on an online contact, you'll actuall
       console.info('start sending eh to', contactInfo.userid);
       window.opener.sendEh(contactInfo.userid, function() {
         console.info('finish sending eh to', contactInfo.userid);
-        // GCM call returns so fast, we introduce an artificial delay
-        window.setTimeout(updateUI, 500);
       });
-      updateUI();
     }
-
-Most of the above code is logging and calling the `updateUI` method. Our custom Polymer element is configured to visualize when we are sending an Eh.
 
 The `sendEhTo` method needs `sendEh` on the background page, let's add it inside `background.js`-
 

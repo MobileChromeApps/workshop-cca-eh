@@ -47,10 +47,7 @@ function sendEhTo(contactInfo) {
   console.info('start sending eh to', contactInfo.userid);
   window.opener.sendEh(contactInfo.userid, function() {
     console.info('finish sending eh to', contactInfo.userid);
-    // GCM call returns so fast, we introduce an artificial delay
-    window.setTimeout(updateUI, 500);
   });
-  updateUI();
 }
 
 window.addEventListener('polymer-ready', function(e) {
