@@ -3,30 +3,32 @@
 <polymer-element name="eh-contact" attributes="contactInfo">
   <template>
     <style>
+    * {
+      box-sizing: border-box;
+    }
     :host {
       box-sizing: border-box;
       display: block;
       position: relative;
       background-color: white;
       padding: 20px;
+      margin: 5px 0;
       width: 100%;
       font-size: 1.2rem;
       font-weight: 300;
-    }
-    .eh-contact-header {
-      margin-bottom: 10px;
+      box-shadow: 3px 3px 5px #bbb;
     }
     .eh-contact-header ::content h2 {
       margin: 0;
       font-size: 1.8rem;
       font-weight: 300;
     }
-    * {
-      box-sizing: border-box;
+    h3 {
+      margin: 0px;
     }
     </style>
 
-    <div class="eh-contact-header" on-tap="{{onTap}}" layout horizontal center>
+    <div on-tap="{{onTap}}" layout horizontal center>
       <template if="{{contactInfo.isCurrentlySendingMessageEh}}">
         <h3>...</h3>
       </template>
