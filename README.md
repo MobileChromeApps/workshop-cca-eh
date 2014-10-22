@@ -36,7 +36,7 @@ Usually you would also need to configure [GCM](https://developer.android.com/goo
 
 * Install the [Chrome Dev Editor](https://chrome.google.com/webstore/detail/chrome-dev-editor-develop/pnoffddplpippgcfjdhbmhkofpnaalpg?hl=en) (CDE, recommended) on your desktop.
 
-* Install the [Chrome App Developer Tool](https://drive.google.com/file/d/0B0UdPHoQPXheQjAwdmZfOENrQjQ/view?usp=sharing) (CADT) on your Android Device.
+* Install the [Chrome App Developer Tool](https://drive.google.com/uc?export=download&confirm=fjug&id=0B0UdPHoQPXheQjAwdmZfOENrQjQ) (CADT) on your Android Device.
 
 * Run the Chrome Dev Editor (Find it in `chrome://apps` page or the Chrome App launcher), and open the `app/` folder from the repo you cloned earlier (using `Menu -> Open Folder...`).
   * Try to run the app locally (using the Play button).
