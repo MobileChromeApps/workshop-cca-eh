@@ -20,9 +20,7 @@ And update `<body>` with our default Polymer elements and `eh-contact-list`:
     <body unresolved>
       <core-header-panel>
         <core-toolbar>
-          <core-icon-button icon="menu" on-tap="{{menuAction}}"></core-icon-button>
           <h3 flex>Eh</h3>
-          <core-icon-button icon="more-vert" on-tap="{{moreAction}}"></core-icon-button>
         </core-toolbar>
 
         <eh-contact-list id="contacts"></eh-contact-list>
