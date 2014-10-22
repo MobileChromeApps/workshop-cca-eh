@@ -23,14 +23,5 @@ fi
 # merge deps html/js/* together
 vulcanize --csp --strip -o vulcanized.html deps.html
 
-rm -rf ../workshop/step*/common
-for i in ../workshop/step*; do
-  cp -r ../common $i/common
-done
-
-rm -rf ../app/common
-cp -r ../common ../app
-
 # success!
 echo "Ok!"
-

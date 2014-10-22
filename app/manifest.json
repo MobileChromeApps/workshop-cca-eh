@@ -1,14 +1,15 @@
 {
   "manifest_version": 2,
-  "name": "begin",
-  "short_name": "begin",
-  "description": "Eh workshop #0",
 
-  "version": "0.0.1.0",
+  "name": "Eh",
+  "short_name": "Eh",
+  "description": "Eh workshop",
+
+  "version": "0.0.1",
 
   "icons": {
-    "16": "assets/icon_16.png",
-    "128": "assets/icon_128.png"
+    "16": "assets/icons/icon16.png",
+    "128": "assets/icons/icon128.png"
   },
 
   "app": {
