@@ -1,3 +1,10 @@
 {
-    "packageId": "com.your.company.step2"
+  "packageId": "com.mmocny.eh.app",
+
+  // platform overrides
+  "android": {
+    "oauth2": {
+      "client_id": "197187574279-o3mvbghalscps7b1d5qmvd60vlhensld.apps.googleusercontent.com"
+    }
+  }
 }
