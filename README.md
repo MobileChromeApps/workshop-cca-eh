@@ -37,6 +37,7 @@ Usually you would also need to configure [GCM](https://developer.android.com/goo
 * Install the [Chrome Dev Editor](https://chrome.google.com/webstore/detail/chrome-dev-editor-develop/pnoffddplpippgcfjdhbmhkofpnaalpg?hl=en) (CDE, recommended) on your desktop.
 
 * Install the [Chrome App Developer Tool](https://drive.google.com/uc?export=download&confirm=fjug&id=0B0UdPHoQPXheQjAwdmZfOENrQjQ) (CADT) on your Android Device.
+  * Note: its important to install *this* version of CADT and not the official version.  That is because `chrome.gcm` requires that you register your application, and for this workshop I've specifically done so for this special build of the CADT.  (Nothing special, it just required a specific packageId).
 
 * Run the Chrome Dev Editor (Find it in `chrome://apps` page or the Chrome App launcher), and open the `app/` folder from the repo you cloned earlier (using `Menu -> Open Folder...`).
   * Try to run the app locally (using the Play button).
