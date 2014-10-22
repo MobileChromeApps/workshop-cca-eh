@@ -78,6 +78,8 @@ With that, you're all done! Congratulations, eh! Reward yourself with some pouti
 
 The code for this step is in [step4](https://github.com/MobileChromeApps/workshop-cca-eh/blob/master/workshop/step4).
 
+You are basically done with your app, Eh!  You can now work on making it look good, add some optional technical extensions, or try to publish your app the the store.
+
 _**Continue to [Extensions &raquo;](https://github.com/MobileChromeApps/workshop-cca-eh/blob/master/docs/extensions.md)**_
 
 or

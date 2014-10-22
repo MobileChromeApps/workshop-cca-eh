@@ -1,4 +1,4 @@
-## Optional Step 5: Publish Your App, Eh!
+## Publish Your App, Eh!
 
 If you've finished early, and you want to publish your app to the Play Store, you can find some hints here.
 
