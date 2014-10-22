@@ -30,6 +30,8 @@ Lets configure your development environment and run a sample app to make sure yo
 
 > To access these settings, open the Developer options in the system Settings. On Android 4.2 and higher, the Developer options screen is hidden by default. To make it visible, go to **Settings > About phone** and tap **Build number** seven times. Return to the previous screen to find Developer options at the bottom.
 
+Usually you would also need to configure [GCM](https://developer.android.com/google/gcm/index.html), but this workship uses an previously configured endpoint to talk between clients.
+
 ### Prerequisites for IDE workflow
 
 * Install the [Chrome Dev Editor](https://chrome.google.com/webstore/detail/chrome-dev-editor-develop/pnoffddplpippgcfjdhbmhkofpnaalpg?hl=en) (CDE, recommended) on your Desktop.
@@ -65,9 +67,7 @@ If you want to update Eh's custom elements and Polymer dependencies, you will ne
 
 You can then run `common/prepare.sh` to update the custom elements used to build the app UI.
 
-> This is required because of [Content Security Policy](https://developer.chrome.com/extensions/contentSecurityPolicy) disallows inline scripts inside Chrome Apps, an important part of Polymer.
-
-Usually you would also need to configure [GCM](https://developer.android.com/google/gcm/index.html), but this workship uses an previously configured endpoint to talk between clients.
+> This is required because of [Content Security Policy](https://developer.chrome.com/extensions/contentSecurityPolicy), which disallows inline scripts inside Chrome Apps, an important part of Polymer.
 
 ### Lets Get Started, Eh!
 
