@@ -1,0 +1,35 @@
+<link rel="import" href="bower_components/polymer/polymer.html">
+<link rel="import" href="eh-contact.html">
+
+<polymer-element name="eh-contact-list" attributes="contacts">
+  <template>
+    <style>
+    :host {
+      box-sizing: border-box;
+      display: block;
+      position: relative;
+      padding: 5px;
+      width: 100%;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    </style>
+
+    <template if="{{contacts.length == 0}}">
+      <h3>You are all alone!</h3>
+    </template>
+    <template repeat="{{contact in contacts}}">
+      <eh-contact contactInfo="{{contact}}"></eh-contact>
+    </template>
+  </template>
+
+<!-- ----------------------------- -->
+
+  <script>
+  Polymer({
+    contacts: []
+  });
+  </script>
+
+</polymer-element>
