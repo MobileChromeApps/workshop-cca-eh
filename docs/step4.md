@@ -56,6 +56,7 @@ And add a top-level `onIncomingEh` function, which does something sensible and s
       var options = {
         type: 'basic',
         title: 'Eh',
+        iconUrl: '/assets/icons/icon128.png',
         message: profile.name + ' x' + profile.inboundEhCount
       };
       chrome.notifications.create(from_userid, options, function() {});
