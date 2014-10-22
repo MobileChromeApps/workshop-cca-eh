@@ -1,6 +1,6 @@
-## Step 5: Publishing Your App
+## Optional Step 5: Publish Your App, Eh!
 
-Finally, you want to publish your app to the Play Store.
+If you've finished early, and you want to publish your app to the Play Store, you can find some hints here.
 
 In step 2, you were provided with various GCM and identity IDs and keys.  If you want to submit your app to the Play Store, you'll need to replace these with IDs and keys generated using your Google account.
 
