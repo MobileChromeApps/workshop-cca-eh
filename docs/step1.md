@@ -1,27 +1,13 @@
 ## Step 1: Getting started
 
-### Symlink assets
-
-Let's start working on the project itself! After the previous step is completed (either with CDE or the `cca`, or just duplicate the [step0](https://github.com/MobileChromeApps/workshop-cca-eh/blob/master/workshop/step0) step), you should symlink in the common resources for Eh - the symlink should be created as a peer of `manifest.json`.
-
-For CDE and the sample code, this will look like:
-
-    ln -s /path/to/workshop-cca-eh/common EhWorkApp/common
-
-And if you created your project with the `cca`, this will look like:
-
-    ln -s /path/to/workshop-cca-eh/common EhWorkApp/www/common
-
-If you'd like to regenerate these resources (advanced, via Bower) then see [README.md](https://github.com/MobileChromeApps/workshop-cca-eh/blob/master/README.md#Advanced).
-
-### Polymer scaffolding
-
 Let's replace the default application with something more unique. This involves changing the default HTML, JS and CSS files.
+
+For future steps, we'll guide you more slowly about the changes you are making.  For now, just trust us with copy & paste.
 
 #### HTML
 
 Open `index.html`, and update the `<head>` to look like this-
-  
+
     <head>
       <title>Eh</title>
       <link rel="stylesheet" href="styles.css">
@@ -91,8 +77,10 @@ If you run your app again, you should see something like this-
 
 Congratulations!
 
-### Next up
+### Getting Stuck?
 
-The code for this step is in [step1](https://github.com/MobileChromeApps/workshop-cca-eh/blob/master/workshop/step1).
+If you ever get stuck, you can find the "answers" inside the `workshop/` folder.  The code for this step is in [step1](https://github.com/MobileChromeApps/workshop-cca-eh/blob/master/workshop/step1).
+
+### How's it going, Eh?
 
 _**Continue to [Step 2: Google Cloud Messaging &raquo;](https://github.com/MobileChromeApps/workshop-cca-eh/blob/master/docs/step2.md)**_
