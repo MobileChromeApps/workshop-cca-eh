@@ -2,8 +2,6 @@
 
 Let's replace the default application with something more unique. This involves changing the default HTML, JS and CSS files.
 
-For future steps, we'll guide you more slowly about the changes you are making.  For now, just trust us with copy & paste.
-
 #### HTML
 
 Open `index.html`, and update the `<head>` to look like this-
