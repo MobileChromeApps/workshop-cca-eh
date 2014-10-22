@@ -83,4 +83,4 @@ With that, you're all done! Congratulations, eh! Reward yourself with some pouti
 
 The code for this step is in [step4](https://github.com/MobileChromeApps/workshop-cca-eh/blob/master/workshop/step4).
 
-_**Continue to [Extensions &raquo;](https://github.com/MobileChromeApps/workshop-cca-eh/blob/master/docs/extensions.md)**_
+_**Continue to [Step 5: Publishing &raquo;](https://github.com/MobileChromeApps/workshop-cca-eh/blob/master/docs/step5.md)**_
