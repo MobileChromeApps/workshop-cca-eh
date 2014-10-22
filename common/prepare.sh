@@ -21,7 +21,16 @@ elif [ "${RUN_BOWER}" == "0" ]; then
 fi
 
 # merge deps html/js/* together
-vulcanize --csp --strip -o vulcanized.html deps.html
+vulcanize --csp -o vulcanized.html deps.html
+
+rm -rf ../workshop/step*/common
+for i in ../workshop/step*; do
+  echo $i
+  mkdir $i/common
+  cp -r *.js *.html assets $i/common
+  mkdir $i/common/bower_components
+  cp -r bower_components/polymer bower_components/platform $i/common/bower_components
+done
 
 # success!
 echo "Ok!"
