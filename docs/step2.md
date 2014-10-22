@@ -70,7 +70,7 @@ Firstly, inside `manifest.json`, we need to let Chrome know the default scopes w
 
 _Keen observers will note that the `client_id` contains our `GCM_SENDERID` from above. This is the ID of the workshop Developer Console project and provided Eh GCM endpoint._ The key is included as your local Chrome extension ID won't properly match the workshop's project.
 
-#### Idenity and user info
+#### Identity and user info
 
 The identity flow needs to be interactive, as Chrome or your mobile device will prompt you for your user detail.
 The code therefore needs to be inside `main.js`, which is run by the foreground page
