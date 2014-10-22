@@ -85,7 +85,7 @@ Above the `ready` listener, let's add a helper to make HTTP requests, using XMLH
 
     function dialURL(token, url, callback) {
       var xhr = new XMLHttpRequest();
-      xhr.open('GET', endpoint, true);
+      xhr.open('GET', url, true);
       xhr.responseType = 'json';
 
       xhr.onload = function(e) {
