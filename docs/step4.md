@@ -1,8 +1,8 @@
-## Step 4: Eh, for sure
+## Step 4: Eh, For Sure
 
 ### Sending an Eh
 
-Ok, now you have a contact list. If you tap on an online contact, you'll actually see an error in your foreground page: the custom elements are configured to call a method called `sendEhTo`. Let's add that method inside `main.js`-
+Okay, now you have a contact list. If you tap on an online contact, you'll actually see an error in your foreground page: the custom elements are configured to call a method called `sendEhTo`. Let's add that method inside `main.js`:
 
     function sendEhTo(contactInfo) {
       console.info('start sending eh to', contactInfo.userid);
@@ -11,7 +11,7 @@ Ok, now you have a contact list. If you tap on an online contact, you'll actuall
       });
     }
 
-The `sendEhTo` method needs `sendEh` on the background page, let's add it inside `background.js`-
+The `sendEhTo` method needs `sendEh` on the background page. Let's add it inside `background.js`:
 
     function sendEh(userid, callback) {
       allUsers[userid].outboundEhCount++;
@@ -26,11 +26,11 @@ The `sendEhTo` method needs `sendEh` on the background page, let's add it inside
       });
     }
 
-If you run the app, you should be able to Eh everyone using the app! However, we don't yet do anything 
+If you run the app, you should be able to Eh everyone using the app! However, we don't yet do anything.
 
 ### Recieving an Eh
 
-If you were to recieve an Eh right now, your client will simply log a warning saying that the message recieved is unsupported. Let's fix that inside `background.js`, adding a new case to our `select` block near here-
+If you were to recieve an Eh right now, your client will simply log a warning saying that the message recieved is unsupported. Let's fix that inside `background.js`, adding a new case to our `select` block near here:
 
         // Incoming GCM data: we'll add callback here later [1].
         ...
@@ -41,7 +41,7 @@ If you were to recieve an Eh right now, your client will simply log a warning sa
           }
           ...
 
-And add a top-level `onIncomingEh` function, which does something sensible and shows a short notification-
+And add a top-level `onIncomingEh` function, which does something sensible and shows a short notification:
 
     function onIncomingEh(from_userid) {
       var profile = allUsers[from_userid];
@@ -64,7 +64,7 @@ And add a top-level `onIncomingEh` function, which does something sensible and s
 
 ### Permissions
 
-As the very last step, we actually have to enable the `notifications` permission inside `manifest.json`. Without this, you'll see an error in the logs when we try to show a Desktop or mobile notification. Update the permissions section to look like this-
+As the very last step, we actually have to enable the `notifications` permission inside `manifest.json`. Without this, you'll see an error in the logs when we try to show a Desktop or mobile notification. Update the permissions section to look like this:
 
     "permissions": [
       "gcm",
@@ -75,7 +75,7 @@ As the very last step, we actually have to enable the `notifications` permission
 
 With that, you're all done! Congratulations, eh! Reward yourself with some poutine.
 
-### Next up
+### Next Up...
 
 The code for this step is in [step4](https://github.com/MobileChromeApps/workshop-cca-eh/blob/master/workshop/step4).
 
