@@ -34,7 +34,7 @@ If you'd like to use an IDE, Chrome Dev Editor is the way to go.
 * Install the [Chrome Dev Editor](https://chrome.google.com/webstore/detail/chrome-dev-editor-develop/pnoffddplpippgcfjdhbmhkofpnaalpg?hl=en) (CDE, recommended) on your desktop.
 
 * Install the [Chrome App Developer Tool](https://drive.google.com/uc?export=download&confirm=fjug&id=0B0UdPHoQPXheQjAwdmZfOENrQjQ) (CADT) on your Android Device.
-  * **Note:** This is a custom-built version of CADT for this workshop; it contains configuration for Google Cloud Messaging, which is used in the app we'll be creating.  The official release of CADT can be found [here](https://github.com/MobileChromeApps/chrome-app-developer-tool/releases).
+  * **Note:** This is a custom-built version of CADT for this workshop.  It contains configuration for Google Cloud Messaging, which is used in the app we'll be creating.  If you already have a version of CADT installed, **please uninstall it before installing this one**.  (For future reference, the official release of CADT can be found [here](https://github.com/MobileChromeApps/chrome-app-developer-tool/releases)).
 
 * Run the Chrome Dev Editor (find it on the `chrome://apps` page or the Chrome App launcher), and open the `app/` folder from the repo you cloned earlier (using `Menu -> Open Folder...`).
 
