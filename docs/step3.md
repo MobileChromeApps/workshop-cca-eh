@@ -1,10 +1,10 @@
 ## Step 3: Contacts
 
-### Userlist
+### The Userlist
 
 Now that you've authorized and connected to GCM, let's find out who else is using Eh. This includes those who have just started up the 'final' version of our app.
 
-When your client connects to GCM, or when any new clients connect, the Eh backend will send down a `userListChangeEh` message with the entire new list of online users. Let's listen for this inside `background.js`-
+When your client connects to GCM, or when any new clients connect, the Eh backend will send down a `userListChangeEh` message with the entire new list of online users. Let's listen for this inside `background.js`:
 
         // Incoming GCM data: we'll add callback here later [1].
         switch(msg.data.type) {
@@ -18,7 +18,7 @@ When your client connects to GCM, or when any new clients connect, the Eh backen
           }
         }
 
-Now, the `onUserListChangeEh` method needs to be added. This will just refresh a global variable, `allUsers`, which lives on the background page. Add this block avove our `main()` method-
+Now, the `onUserListChangeEh` method needs to be added. This will just refresh a global variable, `allUsers`, which lives on the background page. Add this block avove our `main()` method:
 
     var allUsers = {};
 
@@ -51,7 +51,7 @@ Now, the `onUserListChangeEh` method needs to be added. This will just refresh a
 
 The above snippet calls `updateUIs()`, which we haven't defined yet. We need to hint to all visible windows - which on mobile, will just be a single window; on Desktop, it may be many - that the userlist has changed.
 
-Let's add this method, again in `background.js`-
+Let's add this method, again in `background.js`:
 
     function updateUIs() {
       chrome.app.window.getAll().forEach(function(appWindow) {
@@ -59,7 +59,7 @@ Let's add this method, again in `background.js`-
       });
     }
 
-Then open `main.js` and define the `updateUI()` method-
+Then open `main.js` and define the `updateUI()` method:
 
     function updateUI(allUsers) {
       var contacts = Object.keys(allUsers).map(function(userid) { return allUsers[userid]; });
@@ -79,14 +79,14 @@ _You might also want to remove or comment out the test code that added some cont
 
 If you run now, you might see some peers - but only those who have already completed the next step or who are running the final version of Eh. There's one more step in our way.
 
-### Who goes there, eh?
+### Who Goes There, Eh?
 
-Our client needs to identify itself to the server, on startup and when we get the user's display name. Inside `background.js`, we want to call our identify method-
+Our client needs to identify itself to the server, on startup and when we get the user's display name. Inside `background.js`, we want to call our identify method:
 
     // Connected OK: we'll add callback here later [2].
     identifySelfEh('Anonymous Coward');
 
-And we need to define it - plus the actual GCM sender, which needs to do slightly more than just fire the message and forget. Add this within the same file-
+And we need to define it - plus the actual GCM sender, which needs to do slightly more than just fire the message and forget. Add this within the same file:
 
     function sendGcmMessage(data, callback) {
       chrome.gcm.send({
@@ -112,14 +112,14 @@ And we need to define it - plus the actual GCM sender, which needs to do slightl
       });
     }
 
-Finally, inside `main.js` - the code for our foreground page - make sure we also call the identify method with our updated name-
+Finally, inside `main.js` - the code for our foreground page - make sure we also call the identify method with our updated name:
 
           // Identified OK: we'll add callback here later [3].
           window.opener.identifySelfEh(name);
 
 Run the app again, and make sure you inspect the console of the background page: you'll hopefully see successful message send information.
 
-### Next up
+### Next Up...
 
 The code for this step is in [step3](https://github.com/MobileChromeApps/workshop-cca-eh/blob/master/workshop/step3).
 
