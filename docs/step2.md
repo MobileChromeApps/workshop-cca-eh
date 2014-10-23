@@ -4,10 +4,12 @@
 
 Let's connect to the provided Eh server using the GCM APIs. These are [standard for Chrome apps or extensions](https://developer.chrome.com/apps/cloudMessaging), and require signed-in Chrome users.
 
-First, the application manifest (`manifest.json`) needs to be updated with new permissions:
+First, the application manifest (`manifest.json`) needs to be updated with new permissions. Add the string "`gcm`" to the list:
 
     "permissions": [
-      "gcm"
+      ...
+      "gcm",
+      ...
     ],
 
 At the bottom of `background.js`, add this boilerplate block-
