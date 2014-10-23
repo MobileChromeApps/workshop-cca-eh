@@ -4,7 +4,7 @@ Let's replace the default application with something more unique. This involves 
 
 #### HTML
 
-Open `index.html`, and update the `<head>` to look like this-
+Open `index.html`, and update the `<head>` to look like this:
 
     <head>
       <title>Eh</title>
@@ -28,7 +28,7 @@ And update `<body>` with our default Polymer elements and `eh-contact-list`:
 
 #### JS
 
-Now that our app is Polymer-based, we need to listen for the `polymer-ready` event to get started. Replace the contents of `main.js`, our foreground script, with these lines-
+Now that our app is Polymer-based, we need to listen for the `polymer-ready` event to get started. Replace the contents of `main.js`, our foreground script, with these lines:
 
     window.addEventListener('polymer-ready', function(e) {
       var contacts = [
@@ -65,9 +65,9 @@ Finally, the page needs a coat of paint. In fact, it won't display at all withou
       color: white;
     }
 
-### Play it again
+### Play It Again
 
-If you run your app again, you should see something like this-
+If you run your app again, you should see something like this:
 
 ![Preview](https://github.com/MobileChromeApps/workshop-cca-eh/raw/master/docs/assets/step1-preview.png)
 
@@ -77,6 +77,6 @@ Congratulations!
 
 If you ever get stuck, you can find the "answers" inside the `workshop/` folder.  The code for this step is in [step1](https://github.com/MobileChromeApps/workshop-cca-eh/blob/master/workshop/step1).
 
-### How's it going, Eh?
+### How's It Going, Eh?
 
 _**Continue to [Step 2: Google Cloud Messaging &raquo;](https://github.com/MobileChromeApps/workshop-cca-eh/blob/master/docs/step2.md)**_
