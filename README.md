@@ -18,7 +18,7 @@ We want to prove that web-based mobile apps can be comparable to native apps, an
 
 Let's configure your development environment and run a sample app to make sure you can get started.
 
-* Clone this repository:
+* First, clone this repository.  You can use the Chrome Dev Editor (`Menu -> Git Clone...`), or the command line:
 
         git clone https://github.com/MobileChromeApps/workshop-cca-eh.git
 
