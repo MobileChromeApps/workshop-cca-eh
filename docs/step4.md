@@ -85,4 +85,4 @@ _**Continue to [Extensions &raquo;](https://github.com/MobileChromeApps/workshop
 
 or
 
-_**Continue to [Publishing &raquo;](https://github.com/MobileChromeApps/workshop-cca-eh/blob/master/docs/step5.md)**_
+_**Continue to [Publishing &raquo;](https://github.com/MobileChromeApps/workshop-cca-eh/blob/master/docs/publish.md)**_
