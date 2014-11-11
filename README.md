@@ -18,7 +18,7 @@ We want to prove that web-based mobile apps can be comparable to native apps, an
 
 Let's configure your development environment and run a sample app to make sure you can get started.
 
-* First, clone this repository.  You can use the Chrome Dev Editor (`Menu -> Git Clone...`), or the command line:
+* First, clone this repository.
 
         git clone https://github.com/MobileChromeApps/workshop-cca-eh.git
 
@@ -27,31 +27,20 @@ Let's configure your development environment and run a sample app to make sure y
 
     > To access these settings, open the Developer options in the system Settings. On Android 4.2 and higher, the Developer options screen is hidden by default. To make it visible, go to **Settings > About phone** and tap **Build number** seven times. Return to the previous screen to find Developer options at the bottom.
 
-#### IDE Workflow
+#### Workflow
 
-If you'd like to use an IDE, Chrome Dev Editor is the way to go.
+[`cca`](https://github.com/MobileChromeApps/mobile-chrome-apps) is our command line tool, used for creating, updating, and deploying apps.
 
-* Install the [Chrome Dev Editor](https://chrome.google.com/webstore/detail/chrome-dev-editor-develop/pnoffddplpippgcfjdhbmhkofpnaalpg?hl=en) (CDE, recommended) on your desktop.
+* Install [`cca`](https://www.npmjs.org/package/cca) by following [this installation guide](https://github.com/MobileChromeApps/mobile-chrome-apps/blob/master/docs/Installation.md).
+
+The [Chrome App Developer Tool for Mobile](https://github.com/MobileChromeApps/chrome-app-developer-tool]) is an app that allows developers to iterate rapidly on apps in development.
 
 * Install the [Chrome App Developer Tool](https://drive.google.com/uc?export=download&confirm=fjug&id=0B0UdPHoQPXheQjAwdmZfOENrQjQ) (CADT) on your Android Device.
   * **Note:** This is a custom-built version of CADT for this workshop.  It contains configuration for Google Cloud Messaging, which is used in the app we'll be creating.  If you already have a version of CADT installed, **please uninstall it before installing this one**.  (For future reference, the official release of CADT can be found [here](https://github.com/MobileChromeApps/chrome-app-developer-tool/releases)).
 
-* Run the Chrome Dev Editor (find it on the `chrome://apps` page or the Chrome App launcher), and open the `app/` folder from the repo you cloned earlier (using `Menu -> Open Folder...`).
+* Create a new project, importing the `app/` folder from this repo.
 
-* Run the app locally (using the Play button).
-
-* Deploy the app to mobile from CDE (using `Menu -> Deploy to Mobile...`).
-  * **Note:** Make sure to have CADT running on your Android device first!
-
-* If this works, you are good to go!
-
-#### CLI Workflow
-
-If you'd like to use command line tools, `cca` is the way to go.
-
-* Install [`cca`](https://www.npmjs.org/package/cca) by following [this installation guide](https://github.com/MobileChromeApps/mobile-chrome-apps/blob/master/docs/Installation.md).
-
-* Create a new project, importing the `app/` folder from this repo, using `cca create EhApp --copy-from ../PATH_TO/workshop-cca-eh/app/`.
+        cca create EhApp --copy-from ../PATH_TO/workshop-cca-eh/app/
 
 * Run the app on your device.  Once you navigate to your app using `cd EhApp`, you have two options:
   1. Run `cca run android --device`.
