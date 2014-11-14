@@ -48,6 +48,8 @@ The [Chrome App Developer Tool for Mobile](https://github.com/MobileChromeApps/c
 
 * On OS X, run `cca run chrome` to preview the app locally.
 
+![Success!](docs/assets/step0-success.png)
+
 * If this works, you are good to go!
 
 #### Totally Optional Steps for Hacking on UI
