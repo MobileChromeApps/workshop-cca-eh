@@ -42,7 +42,7 @@ We'll add more code in here later. But for now, this just creates a couple of te
 
 #### CSS
 
-Finally, the page needs a coat of paint. In fact, it won't display at all without some CSS, as our elements aren't being grown to fill the page's height.
+Finally, the page needs a coat of paint. In fact, it won't display at all without some CSS, as our elements aren't being grown to fill the page's height. Add this code to `styles.css`:
 
     html, body {
       height: 100%;
