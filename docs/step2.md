@@ -43,7 +43,7 @@ This code will connect to GCM, listen for incoming messages, and log any errors.
 If you run your application now, you should see a few logging messages inside the [background page's console](http://stackoverflow.com/a/10082021/1099216) - hopefully including `GCM connect success, reg __regID__`.
 
 If you have trouble, make sure you've correctly added permissions and restarted your app via CDE or the `cca`.
-_Also, you must be signed in via Chrome or yor mobile device for GCM to correctly register._
+_Also, you must be signed in to Chrome or to your mobile device for GCM to correctly register._
 
 ### Identity
 
@@ -72,7 +72,7 @@ Firstly, inside `manifest.json`, we need to let Chrome know the default scopes w
       ]
     },
 
-_Keen observers will note that the `client_id` contains our `GCM_SENDERID` from above. This is the ID of the workshop Developer Console project and provided Eh GCM endpoint._ The key is included as your local Chrome extension ID won't properly match the workshop's project.
+_Keen observers will note that the `client_id` contains our `GCM_SENDERID` from above. This is the ID of the workshop Developer Console project and provided Eh GCM endpoint. The key is included here, as your local Chrome extension ID won't properly match the workshop's project. This isn't necessary for apps you develop yourself._
 
 #### Identity and User Info
 
