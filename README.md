@@ -33,7 +33,7 @@ Let's configure your development environment and run a sample app to make sure y
 
 * Install [`cca`](https://www.npmjs.org/package/cca) by following [this installation guide](https://github.com/MobileChromeApps/mobile-chrome-apps/blob/master/docs/Installation.md).
 
-The [Chrome App Developer Tool for Mobile](https://github.com/MobileChromeApps/chrome-app-developer-tool]) is an app that allows developers to iterate rapidly on apps in development.
+The [Chrome App Developer Tool for Mobile](https://github.com/MobileChromeApps/chrome-app-developer-tool) is an app that allows developers to iterate rapidly on apps in development.
 
 * Install the [Chrome App Developer Tool](https://drive.google.com/uc?export=download&confirm=fjug&id=0B0UdPHoQPXheQjAwdmZfOENrQjQ) (CADT) on your Android Device.
   * **Note:** This is a custom-built version of CADT for this workshop.  It contains configuration for Google Cloud Messaging, which is used in the app we'll be creating.  If you already have a version of CADT installed, **please uninstall it before installing this one**.  (For future reference, the official release of CADT can be found [here](https://github.com/MobileChromeApps/chrome-app-developer-tool/releases)).
