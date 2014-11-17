@@ -2,6 +2,18 @@
 
 Hopefully you've built your very own Eh app by now. However, you'll probably want to give it a little unique touch of your very own - we've got some ideas of how to extend it.
 
+### Hacking on UI
+
+If you want to update Eh's custom elements and Polymer dependencies, you will need to install:
+
+* [Vulcanize](https://www.npmjs.org/package/vulcanize) with `npm install -g vulcanize`
+* [Bower](http://bower.io) with `npm install -g bower`
+
+Then ypou can update the custom components inside the `ui/` folder, and run the `ui/prepare.sh` script to commit your changes.
+
+The `ui/prepare.sh` script runs the `vulcanize` tool, which is required because of the default [Content Security Policy](https://developer.chrome.com/extensions/contentSecurityPolicy) that disallows inline scripts.
+
+
 ### Audio
 
 This is _eh_ well and good, but we'd like to draw a user's attention closer to a notification when it happens. To do this, let's use the [Web Audio API](http://www.html5rocks.com/en/tutorials/webaudio/intro/).
@@ -37,6 +49,7 @@ Then, we need to update where we create a notification to also play a sound. Goo
 
 If you'd prefer someone other audio, you can add your own file in.
 
+
 ### Eh Icons
 
 The icons that CDE or the `cca` configure for Eh are definitely the 'defaults'. If you'd like to update them to use something that shows your proud heritage (well, someone's proud heritage, if you're not from Canada) then you can update the `manifest.json` file. Instead of these icons-
@@ -53,11 +66,7 @@ Try changing them to the provided icons in the common `ui` folder-
         "128": "ui/assets/icons/icon128.png",
       },
 
-### Other ideas
 
-* Offline Userlist
+### Offline Userlist
 
-* Polymer style updates
-
-* Chur, G'day and Bro
-
+Support offline by caching the userlist on disk using the `chrome.storage` api.  Maybe also queue outgoing eh's to send when you come back online.
