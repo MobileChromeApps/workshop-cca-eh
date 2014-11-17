@@ -18,7 +18,7 @@ When your client connects to GCM, or when any new clients connect, the Eh backen
           }
         }
 
-Now, the `onUserListChangeEh` method needs to be added. This will just refresh a global variable, `allUsers`, which lives on the background page. Add this block avove our `main()` method:
+Now, the `onUserListChangeEh` method needs to be added. This will just refresh a global variable, `allUsers`, which lives on the background page. Add this block above our `main()` method:
 
     var allUsers = {};
 
