@@ -29,7 +29,7 @@ Let's configure your development environment and run a sample app to make sure y
   * If you are unsure, skip this step for now.
   * Simplest way is to visit this guide from your Android device and click the above link.  Or just email the url to yourself :)
   * **Note:** This CADT is custom-built for this workshop.  It contains special configuration for Google Cloud Messaging.
-  * For the future, official releases of CADT can be found [here](https://github.com/MobileChromeApps/chrome-app-developer-tool/releases)), but those won't work with this workshop.
+  * For the future, official releases of CADT can be found [here](https://github.com/MobileChromeApps/chrome-app-developer-tool/releases), but those won't work with this workshop.
 
 #### Workflow
 
