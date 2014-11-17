@@ -9,7 +9,7 @@ If you want to update Eh's custom elements and Polymer dependencies, you will ne
 * [Vulcanize](https://www.npmjs.org/package/vulcanize) with `npm install -g vulcanize`
 * [Bower](http://bower.io) with `npm install -g bower`
 
-Then ypou can update the custom components inside the `ui/` folder, and run the `ui/prepare.sh` script to commit your changes.
+Then you can update the custom components inside the `ui/` folder, and run the `ui/prepare.sh` script to commit your changes.
 
 The `ui/prepare.sh` script runs the `vulcanize` tool, which is required because of the default [Content Security Policy](https://developer.chrome.com/extensions/contentSecurityPolicy) that disallows inline scripts.
 
@@ -43,11 +43,11 @@ Add this helper method inside your `background.js`, as this audio will play rega
 Then, we need to update where we create a notification to also play a sound. Good news! We've included some audio for you. Around where we create the notification, inside the `onIncomingEh()` method, let's add-
 
       // Incoming Eh: we'll update the notification here later [4].
-      play('ui/assets/sounds/jake.wav');
+      play('assets/sounds/jake.wav');
 
       // ...
 
-If you'd prefer someone other audio, you can add your own file in.
+If you'd prefer some other audio, you can add your own file in.
 
 
 ### Eh Icons
