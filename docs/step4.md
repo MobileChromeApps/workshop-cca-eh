@@ -28,9 +28,9 @@ The `sendEhTo` method needs `sendEh` on the background page. Let's add it inside
 
 If you run the app, you should be able to Eh everyone using the app! However, we don't yet do anything.
 
-### Recieving an Eh
+### Receiving an Eh
 
-If you were to recieve an Eh right now, your client will simply log a warning saying that the message recieved is unsupported. Let's fix that inside `background.js`, adding a new case to our `select` block near here:
+If you were to receive an Eh right now, your client will simply log a warning saying that the message received is unsupported. Let's fix that inside `background.js`, adding a new case to our `select` block near here:
 
         // Incoming GCM data: we'll add callback here later [1].
         ...
