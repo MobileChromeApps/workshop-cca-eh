@@ -53,7 +53,7 @@ class Users(object):
         ans = map(lambda user: (user["shortid"], user["name"]), ans) # project only id and name
         while len(json.dumps(ans)) > MAX_GCM_MSG_LEN: # take only most recent that fit within gcm msg budget.
             ans.pop()
-        ans.sort(key = lambda user: user["shortid"], reverse = False) # final sort by shortid, so names don't bounce around
+        ans.sort(key = lambda user: user[0], reverse = False) # final sort by shortid, so names don't bounce around
         return json.dumps(ans)
 
     def get_all_regid(self):
