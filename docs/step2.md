@@ -2,7 +2,9 @@
 
 ### Connect to GCM
 
-Let's connect to the provided Eh server using the GCM APIs. These are [standard for Chrome apps or extensions](https://developer.chrome.com/apps/cloudMessaging), and require signed-in Chrome users.
+Let's connect to the Eh server using the [chrome.gcm APIs](https://developer.chrome.com/apps/cloudMessaging).  Note: For this workshop, you may use our pre-existing server, which saves you some management hassle.  Fear not, however, as we will discuss how you can run your own server at the end, and all the server code is provided.
+
+#### Permissions
 
 First, the application manifest (`manifest.json`) needs to be updated with new permissions. Add the string "`gcm`" to the list:
 
@@ -12,42 +14,54 @@ First, the application manifest (`manifest.json`) needs to be updated with new p
       ...
     ],
 
+#### Code
+
 At the bottom of `background.js`, add this boilerplate block:
 
+    // The GCM_SENDERID is a magic number you get from your application api console.
+    // For this workshop, feel free to use these values to access our existing server.
     var GCM_SENDERID = '197187574279';
     var GCM_SENDER = GCM_SENDERID + '@gcm.googleapis.com';
 
-    (function main() {
-      var errorLogger = function() {
-        console.error.apply(console, arguments);
-      };
-      chrome.gcm.onSendError.addListener(errorLogger);
-      chrome.gcm.onMessagesDeleted.addListener(errorLogger);
+    // We don't expect errors, but lets be good citizens and register error handlers
+    var errorLogger = function() {
+      console.error.apply(console, arguments);
+    };
+    chrome.gcm.onSendError.addListener(errorLogger);
+    chrome.gcm.onMessagesDeleted.addListener(errorLogger);
 
-      chrome.gcm.onMessage.addListener(function(msg) {
-        console.info('got GCM message', msg);
-        // Incoming GCM data: we'll add callback here later [1].
-      });
 
-      chrome.gcm.register([GCM_SENDERID], function(regid) {
-        if (chrome.runtime.lastError || regid === -1) {
-          console.error(chrome.runtime.lastError);
-          return;
-        }
-        console.info('GCM connect success, reg', regid);
-        // Connected OK: we'll add callback here later [2].
-      });
-    }());
+    // This event handles incoming messages
+    chrome.gcm.onMessage.addListener(function(msg) {
+      // Who says comments don't get read?
+      console.info('got GCM message', msg);
+
+      // Incoming GCM data: we'll add callback here later [1].
+
+    });
+
+
+    // First thing's first, egister with the gcm server at application start.
+    chrome.gcm.register([GCM_SENDERID], function(regid) {
+      if (chrome.runtime.lastError || regid === -1) {
+        console.error(chrome.runtime.lastError);
+        return;
+      }
+      console.info('GCM connect success, reg', regid);
+
+      // Connected OK: we'll add callback here later [2].
+
+    });
 
 This code will connect to GCM, listen for incoming messages, and log any errors.
 If you run your application now, you should see a few logging messages inside the [background page's console](http://stackoverflow.com/a/10082021/1099216) - hopefully including `GCM connect success, reg __regID__`.
 
-If you have trouble, make sure you've correctly added permissions and restarted your app via CDE or the `cca`.
-_Also, you must be signed in to Chrome or to your mobile device for GCM to correctly register._
 
 ### Identity
 
-While not strictly part of GCM, let's use Google's [identity APIs](https://developer.chrome.com/apps/identity) to authenticate and get the signed-in user's name so they can be properly identified inside Eh.
+Lets use another cool API, [chrome.identity](https://developer.chrome.com/apps/identity), to ask for permission to automatically get the signed-in user's name.
+
+#### Permissions
 
 First, the application manifest (`manifest.json`) needs to be updated with new permissions.  Add `identity` to the list:
 
@@ -59,7 +73,7 @@ First, the application manifest (`manifest.json`) needs to be updated with new p
 
 #### Scopes
 
-Firstly, inside `manifest.json`, we need to let Chrome know the default scopes we'd like to request. Add this key and our `oauth2` scopes below the `permissions` block:
+Additionaly, inside `manifest.json`, we need to specify both the application "key", and the api "scopes" we'd like to request:
 
     "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAgz1mTPskjtGVirMpr858hRWdaZPpVkcxX6oCIYbOxkYW2GF4hW6Wc6zwasTl+l2yY61qTEEj9VIgrZLYIlFmDNJDpQ5KXeoPpOpfqflSI9GXRw6Eolj3puEVgU2dH5naAxJTHBudAdOLAxdkhiAElNaLxZ3VnccXc6GokuuKhCsTdjAi6dwuCxEteIgyb1H4t/FHe0v42FugZvEqg2xUVZRQHIlgKx1frVPtJdwTuGsuFKA97ItOYbZ7W9vO/tTKqtHqO6sS2BVFBzh0ElpjxFHuUtn5qggB/UMeNAgrvOfwTicpjXcJOU3mUgoVWhkiHPh8fW9tOBpCD8hPASdWXQIDAQAB",
 
@@ -72,9 +86,11 @@ Firstly, inside `manifest.json`, we need to let Chrome know the default scopes w
       ]
     },
 
+Notes:
+* `"key"` is only required for local development.  When you ship your app to the store, it isn't needed.
 _Keen observers will note that the `client_id` contains our `GCM_SENDERID` from above. This is the ID of the workshop Developer Console project and provided Eh GCM endpoint. The key is included here, as your local Chrome extension ID won't properly match the workshop's project. This isn't necessary for apps you develop yourself._
 
-#### Identity and User Info
+#### Code
 
 The identity flow needs to be interactive, as Chrome or your mobile device will prompt you for your user detail.
 The code therefore needs to be inside `main.js`, which is run by the foreground page.
