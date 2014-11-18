@@ -18,12 +18,12 @@ First, the application manifest (`manifest.json`) needs to be updated with new p
 
 At the bottom of `background.js`, add this boilerplate block:
 
-    // The GCM_SENDERID is a magic number you get from your application api console.
+    // The GCM_SENDERID is a magic number you get from your application API console.
     // For this workshop, feel free to use these values to access our existing server.
     var GCM_SENDERID = '197187574279';
     var GCM_SENDER = GCM_SENDERID + '@gcm.googleapis.com';
 
-    // We don't expect errors, but lets be good citizens and register error handlers
+    // We don't expect errors, but let's be good citizens and register error handlers
     var errorLogger = function() {
       console.error.apply(console, arguments);
     };
@@ -41,7 +41,7 @@ At the bottom of `background.js`, add this boilerplate block:
     });
 
 
-    // First thing's first, egister with the gcm server at application start.
+    // First things first, register with the GCM server at application start.
     chrome.gcm.register([GCM_SENDERID], function(regid) {
       if (chrome.runtime.lastError || regid === -1) {
         console.error(chrome.runtime.lastError);
@@ -73,7 +73,7 @@ First, the application manifest (`manifest.json`) needs to be updated with new p
 
 #### Scopes
 
-Additionaly, inside `manifest.json`, we need to specify both the application "key", and the api "scopes" we'd like to request:
+Additionaly, inside `manifest.json`, we need to specify both the application "key", and the API "scopes" we'd like to request:
 
     "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAgz1mTPskjtGVirMpr858hRWdaZPpVkcxX6oCIYbOxkYW2GF4hW6Wc6zwasTl+l2yY61qTEEj9VIgrZLYIlFmDNJDpQ5KXeoPpOpfqflSI9GXRw6Eolj3puEVgU2dH5naAxJTHBudAdOLAxdkhiAElNaLxZ3VnccXc6GokuuKhCsTdjAi6dwuCxEteIgyb1H4t/FHe0v42FugZvEqg2xUVZRQHIlgKx1frVPtJdwTuGsuFKA97ItOYbZ7W9vO/tTKqtHqO6sS2BVFBzh0ElpjxFHuUtn5qggB/UMeNAgrvOfwTicpjXcJOU3mUgoVWhkiHPh8fW9tOBpCD8hPASdWXQIDAQAB",
 
@@ -101,7 +101,7 @@ Inside the `ready` listener, add a method call:
       // ...
     });
 
-Above the `ready` listener, let's add a helper to make HTTP requests, using XMLHTTPRequest (level 2):
+Above the `ready` listener, let's add a helper to make HTTP requests, using XMLHttpRequest (level 2):
 
     function dialURL(token, url, callback) {
       var xhr = new XMLHttpRequest();
