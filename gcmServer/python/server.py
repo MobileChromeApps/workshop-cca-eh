@@ -41,7 +41,7 @@ class Users():
         return ans[0]
 
     def update_usage_time(self, regid):
-        self.get_by_shortid(shortid)["last_use"] = time.time()
+        self.get_by_regid(regid)["last_use"] = time.time()
 
     def get_user_list_as_json_no_more_than_4k_chars(self, exclude_regid):
         ans = filter(lambda user: user["regid"] != exclude_regid, self.users_) # deep copy of filter is important
