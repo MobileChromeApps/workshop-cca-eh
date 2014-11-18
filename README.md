@@ -18,7 +18,8 @@ Let's configure your development environment and run a sample app to make sure y
 
         git clone https://github.com/MobileChromeApps/workshop-cca-eh.git
 
-* Next, install the [`cca`](https://www.npmjs.org/package/cca) command line tool by following this [installation guide](https://github.com/MobileChromeApps/mobile-chrome-apps/blob/master/docs/Installation.md).
+* Next, install the Android Developer Tools and the [`cca`](https://www.npmjs.org/package/cca) command line tool, by following this [installation guide](https://github.com/MobileChromeApps/mobile-chrome-apps/blob/master/docs/Installation.md).
+  * **Note:** `cca` supports iOS, but this workshop does not (`chrome.gcm` is Android-only).
 
 * Connect your Android device to the desktop via USB.
   * **Note:** Make sure you have [*Developer Options* and *USB Debugging* enabled](http://developer.android.com/tools/device.html#developer-device-options).
