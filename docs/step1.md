@@ -28,7 +28,7 @@ And update `<body>` with our default Polymer elements and `eh-contact-list`:
 
 #### JS
 
-Now that our app is Polymer-based, we need to listen for the `polymer-ready` event to get started. Replace the contents of `main.js`, our foreground script, with these lines:
+Now that our app is Polymer-based, we need to listen for the `polymer-ready` event to get started. Replace the contents of `main.js`, our foreground script, with this:
 
     window.addEventListener('polymer-ready', function(e) {
       var contacts = [
@@ -42,7 +42,7 @@ We'll add more code in here later. But for now, this just creates a couple of te
 
 #### CSS
 
-Finally, the page needs a coat of paint. In fact, it won't display at all without some CSS, as our elements aren't being grown to fill the page's height. Add this code to `styles.css`:
+Finally, the page needs a coat of paint.  Replace the contents of `styles.css` with this:
 
     html, body {
       height: 100%;
