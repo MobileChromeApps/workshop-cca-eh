@@ -30,7 +30,7 @@ class Users(object):
     def add(self, regid, name):
         self.users_.append({
             "regid": regid,
-            "shortid": self.next_short_id_,
+            "shortid": str(self.next_short_id_),
             "name": name,
             "last_use": time.time()
         })
@@ -155,8 +155,9 @@ def remindMeAgainEh(msg, payload):
 
 def sendEh(msg, payload):
   users.update_usage_time(msg["from"])
-  to_user = users.get_by_shortid(payload["to_userid"])
   from_user = users.get_by_regid(msg["from"])
+  to_user = users.get_by_shortid(payload["to_userid"])
+
   sendMessage(to_user["regid"], {
     'type': 'incomingEh',
     'from_userid': from_user["shortid"]
