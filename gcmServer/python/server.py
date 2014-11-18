@@ -12,13 +12,17 @@ import xmpp
 SERVER = 'gcm.googleapis.com'
 PORT = 5235
 
+# TODO: is 4k correct?
+GCM_MSG_SIZE = 4096
+MAX_GCM_MSG_LEN = GCM_MSG_SIZE - 300 # Buffer, just in case
+
 unacked_messages_quota = 1000
 send_queue = []
 client = None
 
 ################################################################################
 
-class Users():
+class Users(object):
     def __init__(self):
         self.users_ = []
         self.next_short_id_ = 0
@@ -47,8 +51,7 @@ class Users():
         ans = filter(lambda user: user["regid"] != exclude_regid, self.users_) # deep copy of filter is important
         ans.sort(key = lambda user: user["last_use"], reverse = True) # sorted by use
         ans = map(lambda user: (user["shortid"], user["name"]), ans) # project only id and name
-        while len(json.dumps(ans)) > (4096-300): # take only most recent that fit within gcm msg budget. (subtract some, just in case)
-            # TODO: is 4k correct?
+        while len(json.dumps(ans)) > MAX_GCM_MSG_LEN: # take only most recent that fit within gcm msg budget.
             ans.pop()
         ans.sort(key = lambda user: user["shortid"], reverse = False) # final sort by shortid, so names don't bounce around
         return json.dumps(ans)
