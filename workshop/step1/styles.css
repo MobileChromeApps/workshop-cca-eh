@@ -6,6 +6,7 @@ html, body {
 
 body {
   overflow: auto;
+  font-family: "Lucida Grande", Verdana, Helvetica, Arial, Sans-serif;
 }
 
 core-header-panel {
@@ -17,4 +18,5 @@ core-header-panel {
 core-toolbar {
   background: #03a9f4;
   color: white;
+  font-size: 48px;
 }
