@@ -186,6 +186,8 @@ def handleMessageInApplicationSpecificManner(msg):
   except Exception as e:
     print "Handler of type " + payload['type'] + " had a meltdown:"
     print e
+    import traceback
+    traceback.print_exc()
 
 ################################################################################
 
