@@ -38,11 +38,11 @@ class Users(object):
 
     def get_by_regid(self, regid):
         ans = filter(lambda user: user["regid"] == regid, self.users_)
-        return ans.get(0)
+        return (ans and ans[0]) or None
 
     def get_by_shortid(self, shortid):
         ans = filter(lambda user: user["shortid"] == shortid, self.users_)
-        return ans.get(0)
+        return (ans and ans[0]) or None
 
     def update_usage_time(self, regid):
         self.get_by_regid(regid)["last_use"] = time.time()
