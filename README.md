@@ -18,11 +18,11 @@ Let's configure your development environment and run a sample app to make sure y
 
         git clone https://github.com/MobileChromeApps/workshop-cca-eh.git
 
-* Next, install the Android Developer Tools and the [`cca`](https://www.npmjs.org/package/cca) command line tool, by following this [installation guide](https://github.com/MobileChromeApps/mobile-chrome-apps/blob/master/docs/Installation.md).
+* Next, install the Android Developer Tools and the `cca` command line tool, by following this [Installation Guide](https://github.com/MobileChromeApps/mobile-chrome-apps/blob/master/docs/Installation.md).
   * **Note:** `cca` supports iOS, but this workshop does not (`chrome.gcm` is Android-only).
 
-* Connect your Android device to the desktop via USB.
-  * **Note:** Make sure you have [*Developer Options* and *USB Debugging* enabled](http://developer.android.com/tools/device.html#developer-device-options).
+* Finally, connect your Android device to the desktop via USB.
+  * **Note:** Make sure you have [*Developer Options* and *USB Debugging*](http://developer.android.com/tools/device.html#developer-device-options) enabled.
 
     > To access these settings, open the Developer options in the system Settings. On Android 4.2 and higher, the Developer options screen is hidden by default. To make it visible, go to **Settings > About phone** and tap **Build number** seven times. Return to the previous screen to find Developer options at the bottom.
 
@@ -41,9 +41,9 @@ Let's configure your development environment and run a sample app to make sure y
         cca build android
 
 * Now, lets run the app.  You have a few options:
-  1. Compile and run the app on android: `cca run android --device`.
-  2. Push to the pre-built CADT you downloaded earlier: `cca push --watch`.  (Don't forget to start CADT first!).
-  3. From Mac OSX only, preview your app locally if you have [Chrome Canary](https://www.google.com/intl/en/chrome/browser/canary.html) installed: `cca run chrome`.
+  1. Compile and Run your Chrome App on Android: `cca run android --device`.
+  2. Or, Push to the pre-built CADT you downloaded earlier: `cca push --watch`.  (Don't forget to start CADT first!).
+  3. Or, Run your Chrome App on your Desktop: `cca run chrome`.
 
 ![Success!](docs/assets/step0-success.png)
 
