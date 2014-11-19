@@ -101,6 +101,7 @@ function onIncomingEh(from_userid) {
   profile.inboundEhCount++;
 
   // Incoming Eh: we'll update the notification here later [4].
+      play('assets/sounds/jake.wav');
   var options = {
     type: 'basic',
     title: 'Eh',
@@ -157,3 +158,24 @@ function onIncomingEh(from_userid) {
     identifySelfEh('Anonymous Coward');
   });
 }());
+
+    var audioCtx = new window.AudioContext;
+    function play(url) {
+      var request = new XMLHttpRequest();
+      request.open('GET', url, true);
+      request.responseType = 'arraybuffer';
+
+      request.onload = function() {
+        audioCtx.decodeAudioData(request.response, function(buffer) {
+          var source = audioCtx.createBufferSource();
+          source.buffer = buffer;
+          source.connect(audioCtx.destination);
+          source.start(0);
+        }, function(e) {
+          console.log('Error decoding audio', e);
+        });
+      }
+
+      request.send();
+    }
+
