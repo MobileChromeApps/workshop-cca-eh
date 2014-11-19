@@ -1,4 +1,5 @@
 <link rel="import" href="bower_components/polymer/polymer.html">
+<script src="bower_components/time-elements/time-elements.js"></script>
 
 <polymer-element name="eh-contact" attributes="contactInfo">
   <template>
@@ -26,15 +27,22 @@
       h3 {
         margin: 0px;
       }
+      .last-eh-time {
+        font-size: 9pt;
+      }
     </style>
 
-    <div on-tap="{{onTap}}" layout horizontal center>
+    <div on-tap="{{onTap}}" layout horizontal center wrap>
       <paper-ripple fit></paper-ripple>
+    </style>
       <template if="{{contactInfo.isCurrentlySendingMessageEh}}">
         <h3>...</h3>
       </template>
       <template if="{{!contactInfo.isCurrentlySendingMessageEh}}">
-        <h3>{{contactInfo.name}}</h3>
+        <h3 style="width:100%">{{contactInfo.name}}</h3>
+        <template if="{{contactInfo.lastEhTime > 0}}">
+          <div class="last-eh-time">Received eh: <time is="time-ago" datetime="{{contactInfo.lastEhTime}}"></time></div>
+        </template>
       </template>
       <!--<content></content>-->
     </div>
@@ -47,6 +55,7 @@
       contactInfo: null,
       onTap: function(event, detail, sender) {
         sendEhTo(this.contactInfo);
+        this.contactInfo.lastEhTime = new Date();
       }
     });
   </script>

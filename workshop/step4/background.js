@@ -23,6 +23,8 @@ var GCM_SENDER = GCM_SENDERID + '@gcm.googleapis.com';
 
 var allUsers = {};
 
+var userJoinCounter = 0;
+
 function onUserListChangeEh(users) {
   var update = {};
 
@@ -37,6 +39,7 @@ function onUserListChangeEh(users) {
         userid: userid,
         inboundEhCount: 0,
         outboundEhCount: 0,
+        lastEhTime: -(userJoinCounter++), // Ensure stable sort order.
         isCurrentlySendingMessageEh: false
       };
     }
@@ -99,6 +102,9 @@ function onIncomingEh(from_userid) {
   }
   console.log('received Eh from', from_userid);
   profile.inboundEhCount++;
+  profile.lastEhTime = new Date();
+  // Bring contact to top of list.
+  updateUIs();
 
   // Incoming Eh: we'll update the notification here later [4].
       play('assets/sounds/jake.wav');

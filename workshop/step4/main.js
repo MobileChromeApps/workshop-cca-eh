@@ -40,6 +40,7 @@ function attemptLogin() {
 function updateUI(allUsers) {
   var contacts = Object.keys(allUsers).map(function(userid) { return allUsers[userid]; });
   console.info('updateUI got', contacts.length, 'users');
+  contacts.sort(function(a, b) { return b.lastEhTime - a.lastEhTime; });
   document.getElementById('contacts').contacts = contacts;
 }
 
@@ -51,5 +52,6 @@ function sendEhTo(contactInfo) {
 }
 
 window.addEventListener('polymer-ready', function(e) {
+  updateUI(window.opener.allUsers);
   attemptLogin();
 });
