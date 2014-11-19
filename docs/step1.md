@@ -64,7 +64,6 @@ Finally, the page needs a coat of paint.  Replace the contents of `styles.css` w
     core-toolbar {
       background: #03a9f4;
       color: white;
-      font-size: 48px;
     }
 
 ### Play It Again

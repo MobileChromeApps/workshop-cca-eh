@@ -151,6 +151,25 @@ If you run this on your Android device, you'll see an authorization prompt:
 
 ![Auth](https://github.com/MobileChromeApps/workshop-cca-eh/raw/master/docs/assets/step2-auth.png)
 
+
+Once we have the user's identity coming back from the service, we should update the UI! Add this line to
+the `attemptLogin()` method, to announce the user's name:
+
+    // Identified OK: we'll add callback here later [3].
+    setAppTitle("It's " + name + ", eh");
+
+And add the `setAppTitle()` method below it:
+
+    function setAppTitle(title) {
+      var toolbar = document.querySelector('core-toolbar h3');
+      while (toolbar.firstChild) {
+        toolbar.removeChild(toolbar.firstChild);
+      }
+      var titleNode = document.createTextNode(title);
+      toolbar.appendChild(titleNode);
+    }
+
+
 ### Next Up...
 
 The code for this step is in [step2](https://github.com/MobileChromeApps/workshop-cca-eh/blob/master/workshop/step2).

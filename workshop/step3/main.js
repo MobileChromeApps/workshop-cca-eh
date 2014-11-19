@@ -33,8 +33,18 @@ function attemptLogin() {
       console.info('user identified as', name, 'from', response);
       // Identified OK: we'll add callback here later [3].
       window.opener.identifySelfEh(name);
+      setAppTitle("It's " + name + ", eh");
     });
   });
+}
+
+function setAppTitle(title) {
+  var toolbar = document.querySelector('core-toolbar h3');
+  while (toolbar.firstChild) {
+    toolbar.removeChild(toolbar.firstChild);
+  }
+  var titleNode = document.createTextNode(title);
+  toolbar.appendChild(titleNode);
 }
 
 function updateUI(allUsers) {
