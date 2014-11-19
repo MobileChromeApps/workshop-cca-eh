@@ -22,7 +22,8 @@
     "<all_urls>",
     "gcm",
     "identity",
-    "notifications"
+    "notifications",
+    "storage"
   ],
 
   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAgz1mTPskjtGVirMpr858hRWdaZPpVkcxX6oCIYbOxkYW2GF4hW6Wc6zwasTl+l2yY61qTEEj9VIgrZLYIlFmDNJDpQ5KXeoPpOpfqflSI9GXRw6Eolj3puEVgU2dH5naAxJTHBudAdOLAxdkhiAElNaLxZ3VnccXc6GokuuKhCsTdjAi6dwuCxEteIgyb1H4t/FHe0v42FugZvEqg2xUVZRQHIlgKx1frVPtJdwTuGsuFKA97ItOYbZ7W9vO/tTKqtHqO6sS2BVFBzh0ElpjxFHuUtn5qggB/UMeNAgrvOfwTicpjXcJOU3mUgoVWhkiHPh8fW9tOBpCD8hPASdWXQIDAQAB",

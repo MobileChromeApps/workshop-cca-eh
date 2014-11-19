@@ -15,7 +15,7 @@ function dialURL(token, url, callback) {
   xhr.send();
 }
 
-function attemptLogin() {
+function getAuth(callback) {
   chrome.identity.getAuthToken({
     interactive: true
   }, function(token, account) {
@@ -24,16 +24,30 @@ function attemptLogin() {
       return;
     }
     console.info('chosen account', account, token);
-
     // Successfully obtained token from Chrome Identity, use to get user profile.
     dialURL(token, 'https://www.googleapis.com/oauth2/v3/userinfo', function(response) {
       var name = response.name
           || (response.given_name + ' ' + response.family_name)
           || account.replace(/\@.*/, '');
       console.info('user identified as', name, 'from', response);
-      // Identified OK: we'll add callback here later [3].
-      window.opener.identifySelfEh(name);
+      callback(name);
     });
+  });
+}
+
+function attemptLogin() {
+  chrome.storage.local.get(function(values) {
+    var name = values['displayName'];
+    if (name) {
+      console.log('Retreived display name from storage: ' + name);
+      window.opener.identifySelfEh(name);
+    } else {
+      getAuth(function(name) {
+        chrome.storage.local.set({ 'displayName': name });
+        // Identified OK: we'll add callback here later [3].
+        window.opener.identifySelfEh(name);
+      });
+    }
   });
 }
 
