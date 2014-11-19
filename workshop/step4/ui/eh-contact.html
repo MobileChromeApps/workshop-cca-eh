@@ -3,32 +3,33 @@
 <polymer-element name="eh-contact" attributes="contactInfo">
   <template>
     <style>
-    * {
-      box-sizing: border-box;
-    }
-    :host {
-      box-sizing: border-box;
-      display: block;
-      position: relative;
-      background-color: white;
-      padding: 20px;
-      margin: 5px 0;
-      width: 100%;
-      font-size: 1.2rem;
-      font-weight: 300;
-      box-shadow: 3px 3px 5px #bbb;
-    }
-    .eh-contact-header ::content h2 {
-      margin: 0;
-      font-size: 1.8rem;
-      font-weight: 300;
-    }
-    h3 {
-      margin: 0px;
-    }
+      * {
+        box-sizing: border-box;
+      }
+      :host {
+        box-sizing: border-box;
+        display: block;
+        position: relative;
+        background-color: white;
+        padding: 20px;
+        margin: 5px 0;
+        width: 100%;
+        font-size: 1.2rem;
+        font-weight: 300;
+        box-shadow: 3px 3px 5px #bbb;
+      }
+      .eh-contact-header ::content h2 {
+        margin: 0;
+        font-size: 1.8rem;
+        font-weight: 300;
+      }
+      h3 {
+        margin: 0px;
+      }
     </style>
 
     <div on-tap="{{onTap}}" layout horizontal center>
+      <paper-ripple fit></paper-ripple>
       <template if="{{contactInfo.isCurrentlySendingMessageEh}}">
         <h3>...</h3>
       </template>
@@ -39,14 +40,14 @@
     </div>
   </template>
 
-<!-- ----------------------------- -->
+  <!-- ----------------------------- -->
 
   <script>
-  Polymer({
-    contactInfo: null,
-    onTap: function(event, detail, sender) {
-      sendEhTo(this.contactInfo);
-    }
-  });
+    Polymer({
+      contactInfo: null,
+      onTap: function(event, detail, sender) {
+        sendEhTo(this.contactInfo);
+      }
+    });
   </script>
 </polymer-element>
