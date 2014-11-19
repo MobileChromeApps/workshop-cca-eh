@@ -26,11 +26,6 @@ Let's configure your development environment and run a sample app to make sure y
 
     > To access these settings, open the Developer options in the system Settings. On Android 4.2 and higher, the Developer options screen is hidden by default. To make it visible, go to **Settings > About phone** and tap **Build number** seven times. Return to the previous screen to find Developer options at the bottom.
 
-* Optionally, install the `Chrome App Developer Tool` (CADT) *on your Android device* using this [Download Link](https://drive.google.com/uc?export=download&confirm=fjug&id=0B0UdPHoQPXheQjAwdmZfOENrQjQ).
-  * If you are unsure, skip this step for now.
-  * Simplest way is to visit this guide from your Android device and click the above link.  Or just email the url to yourself :)
-  * **Note:** This CADT is custom-built for this workshop.  It contains special configuration for Google Cloud Messaging.
-  * For the future, official releases of CADT can be found [here](https://github.com/MobileChromeApps/chrome-app-developer-tool/releases), but those won't work with this workshop.
 
 #### Workflow
 
@@ -42,8 +37,7 @@ Let's configure your development environment and run a sample app to make sure y
 
 * Now, lets run the app.  You have a few options:
   1. Compile and Run your Chrome App on Android: `cca run android --device`.
-  2. Or, Push to the pre-built CADT you downloaded earlier: `cca push --watch`.  (Don't forget to start CADT first!).
-  3. Or, Run your Chrome App on your Desktop: `cca run chrome`.
+  2. Or, Run your Chrome App on your Desktop: `cca run chrome`.
 
 ![Success!](docs/assets/step0-success.png)
 
