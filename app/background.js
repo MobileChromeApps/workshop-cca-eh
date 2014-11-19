@@ -4,7 +4,7 @@
  * @see http://developer.chrome.com/apps/app.runtime.html
  * @see http://developer.chrome.com/apps/app.window.html
  */
-chrome.app.runtime.onLaunched.addListener(function(launchData) {
+function createUiWindow() {
   chrome.app.window.create(
     'index.html',
     {
@@ -12,4 +12,8 @@ chrome.app.runtime.onLaunched.addListener(function(launchData) {
       bounds: {width: 360, height: 600}
     }
   );
+}
+
+chrome.app.runtime.onLaunched.addListener(function(launchData) {
+  createUiWindow();
 });

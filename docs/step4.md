@@ -60,6 +60,16 @@ And add a top-level `onIncomingEh` function, which does something sensible and s
         message: profile.name + ' x' + profile.inboundEhCount
       };
       chrome.notifications.create(from_userid, options, function() {});
+
+      chrome.notifications.onClicked.addListener(function(id) {
+        var windows = chrome.app.window.getAll();
+        if (windows) {
+          windows[0].restore();
+        } else {
+          createUiWindow();
+        }
+        chrome.notifications.clear(id, function() {});
+      });
     }
 
 ### Permissions
