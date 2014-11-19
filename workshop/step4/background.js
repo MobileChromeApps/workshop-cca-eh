@@ -4,7 +4,7 @@
  * @see http://developer.chrome.com/apps/app.runtime.html
  * @see http://developer.chrome.com/apps/app.window.html
  */
-chrome.app.runtime.onLaunched.addListener(function(launchData) {
+function createUiWindow() {
   chrome.app.window.create(
     'index.html',
     {
@@ -12,6 +12,10 @@ chrome.app.runtime.onLaunched.addListener(function(launchData) {
       bounds: {width: 800, height: 600}
     }
   );
+}
+
+chrome.app.runtime.onLaunched.addListener(function(launchData) {
+  createUiWindow();
 });
 
 var GCM_SENDERID = '197187574279';
@@ -104,6 +108,16 @@ function onIncomingEh(from_userid) {
     message: profile.name + ' x' + profile.inboundEhCount
   };
   chrome.notifications.create(from_userid, options, function() {});
+
+  chrome.notifications.onClicked.addListener(function(id) {
+    var windows = chrome.app.window.getAll();
+    if (windows) {
+      windows[0].restore();
+    } else {
+      createUiWindow();
+    }
+    chrome.notifications.clear(id, function() {});
+  });
 }
 
 (function main() {
