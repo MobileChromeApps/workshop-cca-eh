@@ -155,7 +155,6 @@ function onIncomingEh(from_userid) {
     }
     console.info('GCM connect success, reg', regid);
     // Connected OK: we'll add callback here later [2].
-    identifySelfEh('Anonymous Coward');
   });
 }());
 
