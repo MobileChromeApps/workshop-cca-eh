@@ -20,6 +20,7 @@
   "dependencies": {
     "polymer": "Polymer/polymer",
     "core-header-panel": "Polymer/core-header-panel",
-    "core-toolbar": "Polymer/core-toolbar"
+    "core-toolbar": "Polymer/core-toolbar",
+    "paper-ripple": "Polymer/paper-ripple"
   }
 }
