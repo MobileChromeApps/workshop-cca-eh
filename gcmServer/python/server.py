@@ -2,6 +2,7 @@
 
 import json
 import os
+import pickle
 import random
 import string
 import sys
@@ -17,9 +18,13 @@ PORT = 5235
 GCM_MSG_SIZE = 4096
 MAX_GCM_MSG_LEN = GCM_MSG_SIZE - 300 # Buffer, just in case
 
+server_dir = os.path.dirname(__file__)
+state_file = os.path.join(server_dir, "server.state")
+auth_file = os.path.join(server_dir, '../gcm_auth_info.json')
 unacked_messages_quota = 1000
-send_queue = []
+send_queue = None
 client = None
+users = None
 
 ################################################################################
 
@@ -60,9 +65,11 @@ class Users(object):
     def get_all_regid(self):
         return map(lambda user: user["regid"], self.users_)
 
-users = Users()
-
 ################################################################################
+
+def SaveAppState():
+  with open(state_file, 'wb') as f:
+    pickle.dump([users, send_queue], f)
 
 def sendMessage(to, data):
   # Return a random alphanumerical id
@@ -98,6 +105,7 @@ def flushQueuedMessages():
   while len(send_queue) and unacked_messages_quota > 0:
     sendRaw(send_queue.pop(0))
     unacked_messages_quota -= 1
+  SaveAppState()
 
 ################################################################################
 
@@ -118,6 +126,7 @@ def messageCallback(session, message):
   sendAck(msg)
 
   handleMessageInApplicationSpecificManner(msg)
+  SaveAppState()
 
 ################################################################################
 
@@ -193,27 +202,25 @@ def handleMessageInApplicationSpecificManner(msg):
 
 ################################################################################
 
-def readUsernameAndPasswordFromFile(path):
-  import json
-  json_data = open(path)
-  ret = json.load(json_data)
-  json_data.close()
-  return ret
-
-################################################################################
-
 def main():
-  global client
+  global client, users, send_queue
   client = xmpp.Client('gcm.googleapis.com', debug=['socket'])
   client.connect(server=(SERVER, PORT), secure=1, use_srv=False)
 
   # TODO: support command line args for auth info / path to file
-  authData = readUsernameAndPasswordFromFile(os.path.join(os.path.dirname(__file__), '../gcm_auth_info.json'))
+  with open(auth_file) as json_data:
+    authData = json.load(json_data)
   auth = client.auth(authData['username'], authData['password'])
 
   if not auth:
     print 'Authentication failed!'
     sys.exit(1)
+
+  try:
+    with open(state_file, "rb") as f:
+      users, send_queue = pickle.load(f)
+  except:
+    users, send_queue = Users(), []
 
   client.RegisterHandler('message', messageCallback)
 
