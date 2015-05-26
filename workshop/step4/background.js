@@ -18,7 +18,7 @@ chrome.app.runtime.onLaunched.addListener(function(launchData) {
   createUiWindow();
 });
 
-var GCM_SENDERID = '197187574279';
+var GCM_SENDERID = 'YOUR_SENDER_ID';
 var GCM_SENDER = GCM_SENDERID + '@gcm.googleapis.com';
 
 var allUsers = {};

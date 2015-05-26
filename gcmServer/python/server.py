@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
 import json
+import os
 import random
 import string
 import sys
@@ -207,7 +208,7 @@ def main():
   client.connect(server=(SERVER, PORT), secure=1, use_srv=False)
 
   # TODO: support command line args for auth info / path to file
-  authData = readUsernameAndPasswordFromFile('../gcm_auth_info.json')
+  authData = readUsernameAndPasswordFromFile(os.path.join(os.path.dirname(__file__), '../gcm_auth_info.json'))
   auth = client.auth(authData['username'], authData['password'])
 
   if not auth:
