@@ -1,3 +1,4 @@
 **/*.pyc
 **/node_modules
 .DS_Store
+/gcmServer/python/server.state
