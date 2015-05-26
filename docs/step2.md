@@ -1,8 +1,40 @@
 ## Step 2: Google Cloud Messaging
 
+### Setting up a Server
+
+#### Google Developers Console
+
+The place to activate APIs and generate the appropriate IDs and keys is the [Google Developers Console](https://console.developers.google.com).
+
+The instructions for activating GCM can be found [here](https://developer.android.com/google/gcm/gs.html); the instructions for identity are [here](https://github.com/MobileChromeApps/cordova-plugin-chrome-apps-identity).
+
+Once complete, you should have:
+1. Created a new Project in the console (The "`Project Number`" is your GCM "`Sender ID`")
+2. Created an "API Key" for Android (The "`API Key`" is your GCM password)
+3. Created a "Client ID" for Android (Required for `chrome.identity`)
+4. Enabled the "GCM for Android" API
+
+Your Andorid Package ID is the `packageId` listed in `www/manifest.mobile.json`
+
+To get the SHA1 of your debug keystore:
+
+    cca exec keytool -list -v -keystore $HOME/.android/debug.keystore -storepass android
+
+For Windows:
+
+    cca exec keytool -list -v -keystore %USERPROFILE%/.android/debug.keystore -storepass android
+
+#### Running a Server
+
+Put your APK Key and Sender ID (Project Number) into `gcmServer/gcm_auth_info.json`
+
+Start the server:
+
+    python gcmServer/python/server.py
+
 ### Connect to GCM
 
-Let's connect to the Eh server using the [chrome.gcm APIs](https://developer.chrome.com/apps/cloudMessaging).  Note: For this workshop, you may use our pre-existing server, which saves you some management hassle.  Fear not, however, as we will discuss how you can run your own server at the end, and all the server code is provided.
+Let's connect to the Eh server using the [chrome.gcm APIs](https://developer.chrome.com/apps/cloudMessaging).
 
 #### Permissions
 
@@ -18,8 +50,7 @@ First, the application manifest (`manifest.json`) needs to be updated with new p
 
 At the bottom of `background.js`, add this boilerplate block:
 
-    // The GCM_SENDERID is a magic number you get from your application API console.
-    // For this workshop, feel free to use these values to access our existing server.
+    // The GCM_SENDERID is the project number you get from your application API console.
     var GCM_SENDERID = '197187574279';
     var GCM_SENDER = GCM_SENDERID + '@gcm.googleapis.com';
 
@@ -73,12 +104,9 @@ First, the application manifest (`manifest.json`) needs to be updated with new p
 
 #### Scopes
 
-Additionaly, inside `manifest.json`, we need to specify both the application "key", and the API "scopes" we'd like to request:
-
-    "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAgz1mTPskjtGVirMpr858hRWdaZPpVkcxX6oCIYbOxkYW2GF4hW6Wc6zwasTl+l2yY61qTEEj9VIgrZLYIlFmDNJDpQ5KXeoPpOpfqflSI9GXRw6Eolj3puEVgU2dH5naAxJTHBudAdOLAxdkhiAElNaLxZ3VnccXc6GokuuKhCsTdjAi6dwuCxEteIgyb1H4t/FHe0v42FugZvEqg2xUVZRQHIlgKx1frVPtJdwTuGsuFKA97ItOYbZ7W9vO/tTKqtHqO6sS2BVFBzh0ElpjxFHuUtn5qggB/UMeNAgrvOfwTicpjXcJOU3mUgoVWhkiHPh8fW9tOBpCD8hPASdWXQIDAQAB",
+Additionaly, inside `manifest.json`, we need to specify the API "scopes" we'd like to request:
 
     "oauth2": {
-      "client_id": "197187574279-0vp4o4vg2ra448hlotnq0b3md981r7em.apps.googleusercontent.com",
       "scopes": [
         "https://www.googleapis.com/auth/userinfo.profile",
         "https://www.googleapis.com/auth/gcm_for_chrome",
@@ -87,8 +115,7 @@ Additionaly, inside `manifest.json`, we need to specify both the application "ke
     },
 
 Notes:
-* `"key"` is only required for local development.  When you ship your app to the store, it isn't needed.
-_Keen observers will note that the `client_id` contains our `GCM_SENDERID` from above. This is the ID of the workshop Developer Console project and provided Eh GCM endpoint. The key is included here, as your local Chrome extension ID won't properly match the workshop's project. This isn't necessary for apps you develop yourself._
+* To have this work as a Desktop Chrome App, you'll also need to specify a `client_id` and `key`. Refer to notes in the [identity plugin](https://github.com/MobileChromeApps/cordova-plugin-chrome-apps-identity).
 
 #### Code
 
