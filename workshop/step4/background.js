@@ -48,6 +48,11 @@ function onUserListChangeEh(users) {
   });
 
   allUsers = update;
+  var savedState = {
+    users: allUsers,
+    userJoinCounter: userJoinCounter
+  };
+  chrome.storage.local.set({"state": savedState});
   updateUIs();
 }
 
@@ -118,7 +123,7 @@ function onIncomingEh(from_userid) {
 
   chrome.notifications.onClicked.addListener(function(id) {
     var windows = chrome.app.window.getAll();
-    if (windows) {
+    if (windows && windows.length > 0) {
       windows[0].restore();
     } else {
       createUiWindow();
@@ -154,14 +159,21 @@ function onIncomingEh(from_userid) {
     }
   });
 
-  chrome.gcm.register([GCM_SENDERID], function(regid) {
-    if (chrome.runtime.lastError || regid === -1) {
-      console.error(chrome.runtime.lastError);
-      return;
+  chrome.storage.local.get(function(values) {
+    console.log('loaded saved state: ' + JSON.stringify(values, null, 4));
+    if (values.state) {
+      allUsers = values.state.users;
+      userJoinCounter = values.state.userJoinCounter;
     }
-    console.info('GCM connect success, reg', regid);
-    // Connected OK: we'll add callback here later [2].
+    chrome.gcm.register([GCM_SENDERID], function(regid) {
+      if (chrome.runtime.lastError || regid === -1) {
+        console.error(chrome.runtime.lastError);
+        return;
+      }
+      console.info('GCM connect success, reg', regid);
+    });
   });
+
 }());
 
     var audioCtx = new window.AudioContext;
