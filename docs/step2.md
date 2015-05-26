@@ -9,6 +9,7 @@ The place to activate APIs and generate the appropriate IDs and keys is the [Goo
 The instructions for activating GCM can be found [here](https://developer.android.com/google/gcm/gs.html); the instructions for identity are [here](https://github.com/MobileChromeApps/cordova-plugin-chrome-apps-identity).
 
 Once complete, you should have:
+
 1. Created a new Project in the console (The "`Project Number`" is your GCM "`Sender ID`")
 2. Created an "API Key" for Android (The "`API Key`" is your GCM password)
 3. Created a "Client ID" for Android (Required for `chrome.identity`)
